@@ -152,12 +152,50 @@ function initBackToTop() {
 function initTestimonials() {
   const wrap = document.querySelector(".test-slider");
   if (!wrap) return;
-  let pos = 0;
-  setInterval(() => {
-    pos += 280 + 16; // item width + gap (approx)
-    if (pos >= wrap.scrollWidth) pos = 0;
-    wrap.scrollTo({ left: pos, behavior: "smooth" });
-  }, 4000);
+
+  // Observe each testimonial and add .in-view when it's visible
+  const items = Array.from(wrap.querySelectorAll(".testimonial"));
+  const thr = 0.45;
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((ent) => {
+        if (ent.isIntersecting) {
+          ent.target.classList.add("in-view");
+        }
+      });
+    },
+    { threshold: thr, root: wrap },
+  );
+  items.forEach((it) => io.observe(it));
+
+  // Enable pointer drag to scroll the slider for a better UX on desktop
+  let isDown = false;
+  let startX, scrollLeft;
+  wrap.addEventListener("pointerdown", (e) => {
+    isDown = true;
+    wrap.classList.add("dragging");
+    startX = e.pageX - wrap.offsetLeft;
+    scrollLeft = wrap.scrollLeft;
+    wrap.setPointerCapture(e.pointerId);
+  });
+  wrap.addEventListener("pointermove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - wrap.offsetLeft;
+    const walk = (x - startX) * 1.2; // scroll-fast
+    wrap.scrollLeft = scrollLeft - walk;
+  });
+  wrap.addEventListener("pointerup", (e) => {
+    isDown = false;
+    wrap.classList.remove("dragging");
+    try {
+      wrap.releasePointerCapture(e.pointerId);
+    } catch (e) {}
+  });
+  wrap.addEventListener("pointerleave", () => {
+    isDown = false;
+    wrap.classList.remove("dragging");
+  });
 }
 
 // Custom cursor follow

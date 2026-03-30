@@ -1,5 +1,6 @@
 :root {
   --bg: #0f1724;
+  --header-height: 68px;
   --bg-light: #ffffff;
   --card: #0b1220;
   --muted: #98a0b3;
@@ -44,13 +45,16 @@ body {
 .site-header {
   position: sticky;
   top: 0;
+  height: var(--header-height);
   background: linear-gradient(
     180deg,
-    rgba(7, 16, 33, 0.6),
-    rgba(7, 16, 33, 0.2)
+    rgba(7, 16, 33, 0.94),
+    rgba(7, 16, 33, 0.86)
   );
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 40;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 .site-header .header-actions {
   display: flex;
@@ -72,7 +76,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1rem;
+  padding: 0 1rem;
+  height: 100%;
 }
 .logo {
   font-weight: 700;
@@ -104,6 +109,16 @@ body {
 
 .hero {
   padding: 4rem 0;
+}
+
+/* Make sure anchored scrolling and sticky header don't hide section tops */
+main {
+  /* offset main content so header doesn't overlap */
+  padding-top: calc(var(--header-height) + 8px);
+}
+
+section {
+  scroll-margin-top: calc(var(--header-height) + 12px);
 }
 .hero-grid {
   display: grid;
@@ -472,19 +487,56 @@ body {
 
 /* Testimonials */
 .testimonials {
-  padding: 3rem 0;
+  padding: 3.5rem 0;
   background: transparent;
 }
 .test-slider {
   display: flex;
   gap: 1rem;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 6px;
+  scroll-snap-type: x mandatory;
+}
+.test-slider::-webkit-scrollbar {
+  height: 8px;
+}
+.test-slider::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, var(--accent), #5b21b6);
+  border-radius: 999px;
 }
 .testimonial {
-  min-width: 280px;
+  flex: 0 0 320px;
+  scroll-snap-align: center;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
-  padding: 1rem;
-  border-radius: 12px;
+  padding: 1.25rem;
+  border-radius: 14px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s ease;
+  transform: translateY(18px) scale(0.985);
+  opacity: 0;
+}
+.testimonial strong {
+  display: block;
+  font-size: 1rem;
+  color: #fff;
+}
+.testimonial p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+.testimonial.in-view {
+  transform: none;
+  opacity: 1;
 }
 
 /* Custom cursor */
@@ -536,6 +588,12 @@ body {
   margin-top: 0.6rem;
 }
 
+/* Right-align project buttons */
+.project-actions {
+  width: 100%;
+  justify-content: flex-end;
+}
+
 #contact-form {
   display: grid;
   gap: 0.6rem;
@@ -555,6 +613,16 @@ body {
 }
 .form-actions {
   margin-top: 0.4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* About CTAs on the right */
+.about-ctas {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  margin-top: 0.6rem;
 }
 
 .site-footer {
@@ -679,6 +747,13 @@ body {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
   padding: 1rem;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card .btn {
+  margin-left: auto;
+  margin-top: 0.75rem;
 }
 
 /* Easter-egg highlight animation */
