@@ -12,8 +12,8 @@ export default async function handler(req, res) {
   }
 
   // Use environment variables (set these in Vercel or your host)
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const token = "8706411745:AAGogLw2wKHr7Ol7Kx8VO2thKhsOboG5R0c";
+  const chatId = "623181901";
 
   if (!token || !chatId) {
     // Still accept and attempt to save to DB if configured
