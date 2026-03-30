@@ -4,6 +4,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Frontend Developer — Portfolio</title>
+    <meta
+      name="description"
+      content="Mubina — Frontend developer. I build accessible, performant, and delightful user interfaces. Available for freelance and full-time roles."
+    />
+    <meta
+      name="keywords"
+      content="frontend, developer, portfolio, ui, javascript, css, html, react, animations"
+    />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mubina — Frontend Developer" />
+    <meta
+      property="og:description"
+      content="I build accessible, performant, and delightful user interfaces. Check out projects, blog posts, and contact me."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://portfolio-with-ai-gamma.vercel.app/"
+    />
+    <meta property="og:image" content="/assets/og-image.svg" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,8 +46,28 @@
       </div>
     </div>
 
+    <!-- Reading mode modal -->
+    <div id="readModal" class="read-modal" aria-hidden="true">
+      <div class="read-modal-backdrop"></div>
+      <div
+        class="read-modal-body"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="readModalTitle"
+      >
+        <button class="read-modal-close" aria-label="Close article">
+          &times;
+        </button>
+        <article class="read-content">
+          <h2 id="readModalTitle"></h2>
+          <div id="readModalBody" class="read-body"></div>
+        </article>
+      </div>
+    </div>
+
     <!-- Custom cursor -->
     <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
+    <!-- Trailing halo cursor removed per request -->
     <header class="site-header">
       <div class="container">
         <a class="logo" href="#">Mubina</a>
@@ -37,14 +78,6 @@
           <a href="#contact">Contact</a>
         </nav>
         <div class="header-actions">
-          <button
-            id="themeToggle"
-            class="icon-btn"
-            aria-label="Toggle theme"
-            title="Toggle dark/light"
-          >
-            <i class="fa-solid fa-moon"></i>
-          </button>
           <button
             class="nav-toggle"
             aria-label="Toggle navigation"
@@ -83,6 +116,7 @@
             <div class="card-surface">
               <div class="profile"><i class="fa-solid fa-user"></i></div>
               <ul class="floating-icons">
+                <!-- Parallax attribute for GSAP -->
                 <li><i class="fa-brands fa-html5"></i></li>
                 <li><i class="fa-brands fa-css3-alt"></i></li>
                 <li><i class="fa-brands fa-js-square"></i></li>
@@ -93,6 +127,7 @@
                 class="hero-lottie"
                 aria-hidden="true"
               ></div>
+              <div id="threeContainer" aria-hidden="true"></div>
             </div>
           </div>
         </div>
@@ -181,9 +216,9 @@
                 </div>
                 <div class="project-actions">
                   <a
-                    class="btn small"
+                    class="btn small live-preview"
                     href="https://ai-doktor-azure.vercel.app/"
-                    target="_blank"
+                    data-live-url="https://ai-doktor-azure.vercel.app/"
                     rel="noopener noreferrer"
                   >
                     Live <i class="fa-solid fa-external-link-alt"></i>
@@ -213,9 +248,9 @@
                 </div>
                 <div class="project-actions">
                   <a
-                    class="btn small"
+                    class="btn small live-preview"
                     href="https://just-do-it-two.vercel.app/"
-                    target="_blank"
+                    data-live-url="https://just-do-it-two.vercel.app/"
                     rel="noopener noreferrer"
                   >
                     Live <i class="fa-solid fa-external-link-alt"></i>
@@ -245,9 +280,9 @@
                 </div>
                 <div class="project-actions">
                   <a
-                    class="btn small"
+                    class="btn small live-preview"
                     href="https://tech-book-black.vercel.app/"
-                    target="_blank"
+                    data-live-url="https://tech-book-black.vercel.app/"
                     rel="noopener noreferrer"
                   >
                     Live <i class="fa-solid fa-external-link-alt"></i>
@@ -373,6 +408,31 @@
         </div>
       </section>
 
+      <!-- Blog (minimal) -->
+      <section id="blog" class="section blog" aria-label="Blog">
+        <div class="container reveal">
+          <h2>Articles</h2>
+          <div class="posts-grid">
+            <article class="post-card">
+              <h3>How I built a fast, accessible UI</h3>
+              <p>
+                Notes on performance, semantic HTML, and small animations that
+                matter.
+              </p>
+              <a class="btn small" href="#">Read</a>
+            </article>
+            <article class="post-card">
+              <h3>Animating with Lottie and CSS</h3>
+              <p>
+                A short walkthrough on adding lightweight animations to your
+                site.
+              </p>
+              <a class="btn small" href="#">Read</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" class="section contact">
         <div class="container reveal">
           <h2>Contact</h2>
@@ -448,6 +508,22 @@
       </div>
     </footer>
 
+    <!-- Live preview modal -->
+    <div id="liveModal" class="live-modal" aria-hidden="true">
+      <div class="live-modal-backdrop"></div>
+      <div class="live-modal-body">
+        <button class="live-modal-close" aria-label="Close preview">
+          &times;
+        </button>
+        <iframe
+          id="liveIframe"
+          src="about:blank"
+          frameborder="0"
+          title="Live preview"
+        ></iframe>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.8/lottie.min.js"></script>
     <button
@@ -458,6 +534,15 @@
     >
       <i class="fa-solid fa-chevron-up"></i>
     </button>
+    <!-- Third-party libs for richer UI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+
+    <!-- Page transition overlay -->
+    <div id="pageTransition" class="page-transition" aria-hidden="true"></div>
+
     <script src="js/main.js"></script>
   </body>
 </html>

@@ -180,6 +180,265 @@ function hidePreloader() {
   });
 }
 
+// Cursor trailing halo removed per user request
+
+// Lightweight WebAudio click/pop sound (very low volume)
+let __audioCtx = null;
+function initSound() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    __audioCtx = new AC();
+    // resume on first gesture to allow autoplay in browsers
+    const resume = () => {
+      if (__audioCtx.state === "suspended") __audioCtx.resume();
+      window.removeEventListener("pointerdown", resume);
+    };
+    window.addEventListener("pointerdown", resume, { once: true });
+
+    function clickSound() {
+      if (!__audioCtx) return;
+      const o = __audioCtx.createOscillator();
+      const g = __audioCtx.createGain();
+      o.type = "sine";
+      o.frequency.value = 880;
+      g.gain.value = 0.0022; // very soft
+      o.connect(g);
+      g.connect(__audioCtx.destination);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(
+        0.00001,
+        __audioCtx.currentTime + 0.12,
+      );
+      o.stop(__audioCtx.currentTime + 0.12);
+    }
+
+    document.querySelectorAll("button, a.btn").forEach((el) => {
+      el.addEventListener("click", () => {
+        try {
+          clickSound();
+        } catch (e) {}
+      });
+    });
+  } catch (e) {
+    // ignore
+  }
+}
+
+// Initialize VanillaTilt for nicer tilt + glare
+function initVanillaTilt() {
+  if (!window.VanillaTilt) return;
+  const nodes = document.querySelectorAll(".project-card");
+  if (!nodes.length) return;
+  VanillaTilt.init(nodes, {
+    max: 12,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.22,
+    scale: 1.03,
+  });
+}
+
+// GSAP/ScrollTrigger animations and simple parallax
+function initGSAP() {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  try {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray(".project-media img").forEach((img) => {
+      gsap.to(img, {
+        scale: 1.08,
+        ease: "none",
+        scrollTrigger: {
+          trigger: img,
+          start: "top 85%",
+          end: "bottom 20%",
+          scrub: true,
+        },
+      });
+    });
+
+    // small hero title reveal with GSAP
+    gsap.from(".hero-title", {
+      y: 32,
+      opacity: 0,
+      duration: 0.9,
+      ease: "power3.out",
+    });
+
+    // parallax - elements with data-parallax
+    document.querySelectorAll("[data-parallax]").forEach((el) => {
+      const depth = parseFloat(el.getAttribute("data-parallax")) || 0.18;
+      gsap.to(el, {
+        yPercent: depth * -12,
+        ease: "none",
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
+  } catch (e) {
+    console.warn("GSAP init failed", e);
+  }
+}
+
+// Simple Three.js floating object (lightweight)
+function initThreeScene() {
+  const container = document.getElementById("threeContainer");
+  if (!container || !window.THREE) return;
+  try {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      100,
+    );
+    camera.position.z = 3;
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio || 1);
+    container.appendChild(renderer.domElement);
+
+    const geo = new THREE.TorusKnotGeometry(0.6, 0.16, 128, 16);
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x7c3aed,
+      metalness: 0.25,
+      roughness: 0.35,
+      emissive: 0x220022,
+      emissiveIntensity: 0.04,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambient);
+    const p = new THREE.PointLight(0xffffff, 0.9);
+    p.position.set(2, 2, 2);
+    scene.add(p);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      mesh.rotation.x += 0.005;
+      mesh.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener("resize", () => {
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+  } catch (e) {
+    console.warn("Three init failed", e);
+  }
+}
+
+// Page transitions for internal nav links (overlay)
+function initPageTransitions() {
+  const overlay = document.getElementById("pageTransition");
+  if (!overlay) return;
+  // only for site nav anchors
+  document.querySelectorAll(".nav a, .hero-cta a").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const href = a.getAttribute("href") || "";
+      if (!href.startsWith("#")) return; // external links unaffected
+      e.preventDefault();
+      overlay.classList.add("show");
+      setTimeout(() => {
+        const dest = document.querySelector(href);
+        if (dest) dest.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => overlay.classList.remove("show"), 650);
+      }, 180);
+    });
+  });
+}
+
+// Magnet effect for social icons
+function initMagnet() {
+  const wrap = document.querySelector(".social");
+  if (!wrap) return;
+  const items = Array.from(wrap.querySelectorAll("a"));
+  const strength = 36; // px max
+  wrap.addEventListener("mousemove", (e) => {
+    const mx = e.clientX;
+    const my = e.clientY;
+    items.forEach((it) => {
+      const rect = it.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = mx - cx;
+      const dy = my - cy;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const maxDist = 220;
+      const force = Math.max(0, (maxDist - dist) / maxDist);
+      const tx = (dx / (dist || 1)) * strength * force * 0.7;
+      const ty = (dy / (dist || 1)) * strength * force * 0.7;
+      it.style.transform = `translate(${tx}px, ${ty}px)`;
+    });
+  });
+  wrap.addEventListener("mouseleave", () => {
+    items.forEach((it) => (it.style.transform = ""));
+  });
+}
+
+// Live preview modal (iframe)
+function initLivePreview() {
+  const modal = document.getElementById("liveModal");
+  if (!modal) return;
+  const iframe = document.getElementById("liveIframe");
+  const closeBtn = modal.querySelector(".live-modal-close");
+  const backdrop = modal.querySelector(".live-modal-backdrop");
+
+  function open(url) {
+    iframe.src = url;
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+  function close() {
+    modal.classList.remove("show");
+    iframe.src = "about:blank";
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("a.live-preview").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const url = a.dataset.liveUrl || a.href;
+      if (!url) return;
+      open(url);
+    });
+  });
+
+  closeBtn.addEventListener("click", close);
+  backdrop.addEventListener("click", close);
+  window.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape") close();
+  });
+}
+
+// Easter egg: key sequence 'D','E','V'
+function initEasterEgg() {
+  const seq = [];
+  const target = ["d", "e", "v"];
+  window.addEventListener("keydown", (e) => {
+    seq.push(e.key.toLowerCase());
+    if (seq.slice(-3).join("") === target.join("")) {
+      console.log("Salom, dasturchi do'stim!");
+      const root = document.documentElement;
+      const prev = getComputedStyle(root).getPropertyValue("--accent");
+      root.style.setProperty("--accent", "#ff2d95");
+      document.body.classList.add("egg-flash");
+      setTimeout(() => {
+        root.style.setProperty("--accent", prev || "#7c3aed");
+        document.body.classList.remove("egg-flash");
+      }, 3500);
+    }
+  });
+}
+
 // Initialize small UI extras
 document.addEventListener("DOMContentLoaded", () => {
   initLottie();
@@ -188,6 +447,15 @@ document.addEventListener("DOMContentLoaded", () => {
   initTestimonials();
   initCustomCursor();
   hidePreloader();
+  initMagnet();
+  initLivePreview();
+  initEasterEgg();
+  initSound();
+  initVanillaTilt();
+  initGSAP();
+  initThreeScene();
+  initPageTransitions();
+  initReadModal();
 });
 
 if (document.readyState === "loading") {
