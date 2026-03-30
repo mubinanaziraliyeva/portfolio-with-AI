@@ -17,11 +17,11 @@ export default async function handler(req, res) {
 
   // Xabar matni (HTML formatida chiroyliroq ko'rinishi uchun)
   const telegramMessage = `
-<b>New Portfolio Message</b>
+<b>New Portfolio Message</b>\n
 👤 <b>Name:</b> ${name}
 📧 <b>Email:</b> ${email}
 📝 <b>Message:</b> ${message || "No message provided"}
-  `;
+`;
 
   try {
     const tgRes = await fetch(

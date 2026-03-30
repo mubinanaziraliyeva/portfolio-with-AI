@@ -1,11 +1,15 @@
 :root {
   --bg: #0f1724;
+  --bg-light: #ffffff;
   --card: #0b1220;
   --muted: #98a0b3;
   --accent: #7c3aed;
   --glass: rgba(255, 255, 255, 0.03);
+  --text: #e6eef8;
+  --text-light: #0b1220;
   --radius: 14px;
   --max-width: 1100px;
+  --back-to-top: rgba(0, 0, 0, 0.6);
   font-family:
     "Inter",
     system-ui,
@@ -25,9 +29,21 @@ body {
 body {
   margin: 0;
   background: linear-gradient(180deg, #071021 0%, #071829 100%);
-  color: #e6eef8;
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Light theme override */
+body.light {
+  --bg: var(--bg-light);
+  --card: #f8fafc;
+  --muted: #475569;
+  --accent: #7c3aed;
+  --glass: rgba(2, 6, 23, 0.03);
+  --text: var(--text-light);
+  background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
+  color: var(--text);
 }
 .container {
   max-width: var(--max-width);
@@ -45,6 +61,22 @@ body {
   );
   backdrop-filter: blur(6px);
   z-index: 40;
+}
+.site-header .header-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.icon-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  padding: 0.45rem;
+  border-radius: 9px;
+  cursor: pointer;
+}
+.icon-btn:hover {
+  transform: translateY(-3px);
 }
 .site-header .container {
   display: flex;
@@ -142,6 +174,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.hero-lottie {
+  position: absolute;
+  inset: auto 12px 12px auto;
+  width: 120px;
+  height: 120px;
+  opacity: 0.14;
 }
 .profile {
   width: 120px;
@@ -253,14 +292,144 @@ body {
   box-shadow: 0 18px 40px rgba(2, 6, 23, 0.6);
 }
 .project-media {
+  position: relative;
   height: 140px;
   background: linear-gradient(135deg, #0b1220, #071829);
+  overflow: hidden;
 }
 .project-media img.project-thumb {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition:
+    opacity 220ms ease,
+    transform 320ms ease;
+}
+
+.project-media video.project-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+.project-card:hover .project-media video.project-video {
+  opacity: 1;
+}
+.project-card:hover .project-media img.project-thumb {
+  opacity: 0.12;
+  transform: scale(1.05);
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.18rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-right: 0.4rem;
+}
+
+/* Preloader */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.preloader .logo {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.6rem;
+}
+.loader-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: preload 0.9s ease-in-out infinite;
+}
+@keyframes preload {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--back-to-top);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.22s ease;
+  z-index: 999;
+}
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 3rem 0;
+  background: transparent;
+}
+.test-slider {
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+}
+.testimonial {
+  min-width: 280px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(124, 58, 237, 0.9);
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+  mix-blend-mode: screen;
+  transition: transform 0.08s linear;
 }
 
 /* colored skill icons */

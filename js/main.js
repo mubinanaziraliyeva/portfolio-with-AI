@@ -100,6 +100,96 @@ function attachFormHandler() {
   }
 }
 
+// Initialize Lottie animation if container exists
+function initLottie() {
+  const container = document.querySelector(".hero-lottie");
+  if (!container || !window.lottie) return;
+  try {
+    lottie.loadAnimation({
+      container,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      // lightweight generic animation; user can replace with their JSON
+      path: "https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json",
+    });
+  } catch (e) {
+    console.warn("Lottie init failed", e);
+  }
+}
+
+// Project preview video play/pause and lazy set src (data-video)
+function initProjectPreviews() {
+  document.querySelectorAll(".project-card").forEach((card) => {
+    const video = card.querySelector("video.project-video");
+    if (!video) return;
+    const src = video.getAttribute("data-src");
+    card.addEventListener("mouseenter", () => {
+      if (src && !video.src) video.src = src;
+      video.play().catch(() => {});
+    });
+    card.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+}
+
+// Back to top button behaviour
+function initBackToTop() {
+  const btn = document.getElementById("backToTop");
+  if (!btn) return;
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) btn.classList.add("show");
+    else btn.classList.remove("show");
+  });
+  btn.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: "smooth" }),
+  );
+}
+
+// Simple testimonials auto-scroll
+function initTestimonials() {
+  const wrap = document.querySelector(".test-slider");
+  if (!wrap) return;
+  let pos = 0;
+  setInterval(() => {
+    pos += 280 + 16; // item width + gap (approx)
+    if (pos >= wrap.scrollWidth) pos = 0;
+    wrap.scrollTo({ left: pos, behavior: "smooth" });
+  }, 4000);
+}
+
+// Custom cursor follow
+function initCustomCursor() {
+  const cur = document.querySelector(".custom-cursor");
+  if (!cur) return;
+  window.addEventListener("mousemove", (e) => {
+    cur.style.left = e.clientX + "px";
+    cur.style.top = e.clientY + "px";
+  });
+}
+
+// Preloader hide after load
+function hidePreloader() {
+  const p = document.querySelector(".preloader");
+  if (!p) return;
+  window.addEventListener("load", () => {
+    p.style.opacity = "0";
+    setTimeout(() => p.remove(), 450);
+  });
+}
+
+// Initialize small UI extras
+document.addEventListener("DOMContentLoaded", () => {
+  initLottie();
+  initProjectPreviews();
+  initBackToTop();
+  initTestimonials();
+  initCustomCursor();
+  hidePreloader();
+});
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", attachFormHandler);
 } else {

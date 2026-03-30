@@ -17,6 +17,16 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader" aria-hidden="true">
+      <div class="preloader-inner">
+        <div class="logo">Mubina</div>
+        <div class="loader-dot"></div>
+      </div>
+    </div>
+
+    <!-- Custom cursor -->
+    <div id="custom-cursor" class="custom-cursor" aria-hidden="true"></div>
     <header class="site-header">
       <div class="container">
         <a class="logo" href="#">Mubina</a>
@@ -26,13 +36,23 @@
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
-        <button
-          class="nav-toggle"
-          aria-label="Toggle navigation"
-          id="navToggle"
-        >
-          <i class="fa-solid fa-bars"></i>
-        </button>
+        <div class="header-actions">
+          <button
+            id="themeToggle"
+            class="icon-btn"
+            aria-label="Toggle theme"
+            title="Toggle dark/light"
+          >
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button
+            class="nav-toggle"
+            aria-label="Toggle navigation"
+            id="navToggle"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -54,6 +74,9 @@
               <a class="btn ghost" href="#contact"
                 >Hire me <i class="fa-solid fa-envelope"></i
               ></a>
+              <a class="btn ghost" href="assets/cv.pdf" download id="downloadCv"
+                >Download CV <i class="fa-solid fa-download"></i
+              ></a>
             </div>
           </div>
           <div class="hero-card" aria-hidden="true">
@@ -65,6 +88,11 @@
                 <li><i class="fa-brands fa-js-square"></i></li>
                 <li><i class="fa-brands fa-react"></i></li>
               </ul>
+              <div
+                id="hero-lottie"
+                class="hero-lottie"
+                aria-hidden="true"
+              ></div>
             </div>
           </div>
         </div>
@@ -324,6 +352,27 @@
         </div>
       </section>
 
+      <!-- Testimonials -->
+      <section class="section testimonials" aria-label="Testimonials">
+        <div class="container reveal">
+          <h2>Testimonials</h2>
+          <div class="test-slider" id="testSlider">
+            <div class="testimonial">
+              <strong>John Doe</strong>
+              <p>Excellent work — delivered on time and polished UI.</p>
+            </div>
+            <div class="testimonial">
+              <strong>Acme Co</strong>
+              <p>Professional and thoughtful frontend development.</p>
+            </div>
+            <div class="testimonial">
+              <strong>Mentor</strong>
+              <p>Great student, strong attention to detail and a11y focus.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" class="section contact">
         <div class="container reveal">
           <h2>Contact</h2>
@@ -400,6 +449,15 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.8/lottie.min.js"></script>
+    <button
+      id="backToTop"
+      class="back-to-top"
+      aria-label="Back to top"
+      title="Back to top"
+    >
+      <i class="fa-solid fa-chevron-up"></i>
+    </button>
     <script src="js/main.js"></script>
   </body>
 </html>
