@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Frontend Developer — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="logo" href="#">Mubina</a>
+        <nav class="nav" id="nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button
+          class="nav-toggle"
+          aria-label="Toggle navigation"
+          id="navToggle"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Hi, I'm <span class="accent">Mubina</span>
+            </h1>
+            <p class="hero-sub">
+              Frontend developer building accessible, performant, and delightful
+              interfaces.
+            </p>
+            <div class="hero-cta">
+              <a class="btn" href="#projects"
+                >See my work <i class="fa-solid fa-arrow-right"></i
+              ></a>
+              <a class="btn ghost" href="#contact"
+                >Hire me <i class="fa-solid fa-envelope"></i
+              ></a>
+            </div>
+          </div>
+          <div class="hero-card" aria-hidden="true">
+            <div class="card-surface">
+              <div class="profile"><i class="fa-solid fa-user"></i></div>
+              <ul class="floating-icons">
+                <li><i class="fa-brands fa-html5"></i></li>
+                <li><i class="fa-brands fa-css3-alt"></i></li>
+                <li><i class="fa-brands fa-js-square"></i></li>
+                <li><i class="fa-brands fa-react"></i></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div class="container reveal">
+          <h2>About me</h2>
+          <p>
+            I craft frontends with attention to performance, accessibility and
+            delightful animations. I enjoy turning designs into pixel-perfect,
+            responsive, and maintainable code.
+          </p>
+          <div class="about-grid">
+            <div>
+              <h3><i class="fa-solid fa-briefcase"></i> Experience</h3>
+              <p>
+                3+ years building UIs for web applications and marketing sites.
+              </p>
+            </div>
+            <div>
+              <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+              <p>
+                Self-taught and continuous learner — workshops, open-source, and
+                courses.
+              </p>
+            </div>
+            <div>
+              <h3><i class="fa-solid fa-heart"></i> Interests</h3>
+              <p>
+                Animations, design systems, accessibility, performance tuning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section skills">
+        <div class="container reveal">
+          <h2>Skills</h2>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <i class="fa-brands fa-html5 fa-2x"></i>
+              <h4>HTML</h4>
+              <p>Semantic and accessible markup.</p>
+            </div>
+            <div class="skill-card">
+              <i class="fa-brands fa-css3-alt fa-2x"></i>
+              <h4>CSS</h4>
+              <p>Responsive layouts, animations, modern patterns.</p>
+            </div>
+            <div class="skill-card">
+              <i class="fa-brands fa-js-square fa-2x"></i>
+              <h4>JavaScript</h4>
+              <p>ES6+, build tooling, and progressive enhancement.</p>
+            </div>
+            <div class="skill-card">
+              <i class="fa-brands fa-react fa-2x"></i>
+              <h4>React</h4>
+              <p>Component-driven apps and state management.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects">
+        <div class="container reveal">
+          <h2>Selected projects</h2>
+          <div class="projects-grid">
+            <!-- User projects (live links added) -->
+            <article class="project-card">
+              <div class="project-media">
+                <img
+                  class="project-thumb"
+                  src="./Image/Screenshot 2026-03-29 211538.png"
+                  alt="AI Doktor screenshot"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h3>AI Doktor (Live)</h3>
+                <p>Healthcare demo built with modern frontend practices.</p>
+                <div class="project-meta">
+                  <span><i class="fa-solid fa-globe"></i> Live</span>
+                  <span><i class="fa-brands fa-vercel"></i> Vercel</span>
+                </div>
+                <div class="project-actions">
+                  <a
+                    class="btn small"
+                    href="https://ai-doktor-azure.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live <i class="fa-solid fa-external-link-alt"></i>
+                  </a>
+                  <a class="btn small ghost" href="#"
+                    >Code <i class="fa-brands fa-github"></i
+                  ></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <img
+                  class="project-thumb"
+                  src="./Image/Screenshot 2026-03-29 211651.png"
+                  alt="Just Do It screenshot"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h3>Just Do It (Live)</h3>
+                <p>Task management / productivity demo deployed on Vercel.</p>
+                <div class="project-meta">
+                  <span><i class="fa-solid fa-globe"></i> Live</span>
+                  <span><i class="fa-brands fa-vercel"></i> Vercel</span>
+                </div>
+                <div class="project-actions">
+                  <a
+                    class="btn small"
+                    href="https://just-do-it-two.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live <i class="fa-solid fa-external-link-alt"></i>
+                  </a>
+                  <a class="btn small ghost" href="#"
+                    >Code <i class="fa-brands fa-github"></i
+                  ></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <img
+                  class="project-thumb"
+                  src="./Image/Screenshot 2026-03-29 211720.png"
+                  alt="Tech Book screenshot"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h3>Tech Book (Live)</h3>
+                <p>Dark-themed technical blog/demo hosted on Vercel.</p>
+                <div class="project-meta">
+                  <span><i class="fa-solid fa-globe"></i> Live</span>
+                  <span><i class="fa-brands fa-vercel"></i> Vercel</span>
+                </div>
+                <div class="project-actions">
+                  <a
+                    class="btn small"
+                    href="https://tech-book-black.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live <i class="fa-solid fa-external-link-alt"></i>
+                  </a>
+                  <a class="btn small ghost" href="#"
+                    >Code <i class="fa-brands fa-github"></i
+                  ></a>
+                </div>
+              </div>
+            </article>
+
+            <!-- existing/demo project cards left intact below for examples -->
+            <article class="project-card">
+              <div class="project-media">
+                <img
+                  class="project-thumb"
+                  src="./Image/RAPIDS-GPU_Pic1.png"
+                  alt="Interactive Dashboard screenshot"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h3>Interactive Dashboard</h3>
+                <p>
+                  Data-rich dashboard with accessible charts and responsive
+                  controls.
+                </p>
+                <div class="project-meta">
+                  <span><i class="fa-solid fa-code"></i> React</span>
+                  <span><i class="fa-solid fa-palette"></i> CSS Modules</span>
+                </div>
+                <div class="project-actions">
+                  <a class="btn small" href="#"
+                    >Live <i class="fa-solid fa-external-link-alt"></i
+                  ></a>
+                  <a class="btn small ghost" href="#"
+                    >Code <i class="fa-brands fa-github"></i
+                  ></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <img
+                  class="project-thumb"
+                  src="./Image/Website_Marketing_Small_Business_Blog_Header.png"
+                  alt="Marketing Site screenshot"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h3>Marketing Site</h3>
+                <p>
+                  High-performance landing page with animation system and
+                  A/B-ready components.
+                </p>
+                <div class="project-meta">
+                  <span><i class="fa-solid fa-code"></i> HTML/CSS</span>
+                  <span><i class="fa-solid fa-rocket"></i> Performance</span>
+                </div>
+                <div class="project-actions">
+                  <a class="btn small" href="#"
+                    >Live <i class="fa-solid fa-external-link-alt"></i
+                  ></a>
+                  <a class="btn small ghost" href="#"
+                    >Code <i class="fa-brands fa-github"></i
+                  ></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-media">
+                <img
+                  class="project-thumb"
+                  src="./Image/Component Library Structure -69892.jpg"
+                  alt="Component Library screenshot"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h3>Component Library</h3>
+                <p>
+                  Design-system-ready components with accessibility-first API.
+                </p>
+                <div class="project-meta">
+                  <span><i class="fa-solid fa-box"></i> Storybook</span>
+                  <span><i class="fa-solid fa-check"></i> Tests</span>
+                </div>
+                <div class="project-actions">
+                  <a class="btn small" href="#"
+                    >Docs <i class="fa-solid fa-book"></i
+                  ></a>
+                  <a class="btn small ghost" href="#"
+                    >Code <i class="fa-brands fa-github"></i
+                  ></a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="container reveal">
+          <h2>Contact</h2>
+          <p>
+            I'm available for freelance and full-time roles. Tell me about your
+            project.
+          </p>
+          <form id="contact-form" action="#">
+            <label>
+              <span>Name</span>
+              <input id="username" type="text" name="name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input id="useremail" type="email" name="email" required />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea
+                id="usermessage"
+                name="message"
+                rows="4"
+                required
+              ></textarea>
+            </label>
+            <div class="form-actions">
+              <button id="subBtn" class="btn" type="submit">
+                Send message <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div>© <span id="year"></span> YourName — Frontend Developer</div>
+        <div class="social">
+          <!-- Replace href values with your profile URLs -->
+          <a
+            href="#"
+            aria-label="GitHub"
+            title="Replace with your GitHub profile URL"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="#"
+            aria-label="Vercel"
+            title="Replace with your Vercel profile or dashboard URL"
+          >
+            <!-- small inline SVG triangle as Vercel logo (keeps it icon-like) -->
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path d="M12 3L2 21h20L12 3z" fill="currentColor"></path>
+            </svg>
+          </a>
+          <a
+            href="#"
+            aria-label="Figma"
+            title="Replace with your Figma profile URL"
+          >
+            <i class="fa-brands fa-figma"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
