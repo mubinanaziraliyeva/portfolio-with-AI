@@ -1,8 +1,3 @@
-// Vercel serverless function to forward contact form messages to Telegram bot
-// Set environment variables in Vercel dashboard:
-//   TELEGRAM_BOT_TOKEN=your_bot_token
-//   TELEGRAM_CHAT_ID=your_chat_id_or_channel
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
@@ -10,20 +5,23 @@ export default async function handler(req, res) {
   }
 
   const { name, email, message } = req.body || {};
+
   if (!name || !email) {
-    res.status(400).json({ error: "Missing name or email" });
+    res.status(400).json({ error: "Ism va email majburiy!" });
     return;
   }
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  // Ma'lumotlaringiz
+  const token = "8706411745:AAGogLw2wKHr7Ol7Kx8VO2thKhsOboG5R0c";
+  const chatId = "623181901";
 
-  if (!token || !chatId) {
-    res.status(500).json({ error: "Telegram configuration missing" });
-    return;
-  }
-
-  const text = `📨 New contact from portfolio:\nName: ${name}\nEmail: ${email}\n\n${message || ""}`;
+  // Xabar matni (HTML formatida chiroyliroq ko'rinishi uchun)
+  const telegramMessage = `
+<b>New Portfolio Message</b>
+👤 <b>Name:</b> ${name}
+📧 <b>Email:</b> ${email}
+📝 <b>Message:</b> ${message || "No message provided"}
+  `;
 
   try {
     const tgRes = await fetch(
@@ -31,20 +29,22 @@ export default async function handler(req, res) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: telegramMessage,
+          parse_mode: "HTML", // Matnni qalin (bold) qilish imkonini beradi
+        }),
       },
     );
 
     const json = await tgRes.json();
-    if (!tgRes.ok) {
-      console.error("Telegram error", json);
-      res.status(502).json({ error: "Telegram API error", details: json });
-      return;
-    }
 
-    res.status(200).json({ ok: true, result: json });
+    if (tgRes.ok) {
+      res.status(200).json({ ok: true, result: json });
+    } else {
+      res.status(502).json({ error: "Telegram error", details: json });
+    }
   } catch (err) {
-    console.error("Send message failed", err);
-    res.status(500).json({ error: "Send failed", details: String(err) });
+    res.status(500).json({ error: "Server error", details: String(err) });
   }
 }
