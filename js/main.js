@@ -1004,16 +1004,28 @@ document.querySelectorAll('a, button, .project-card').forEach(el => {
 });
 
 // Visit counter (countapi.xyz bepul)
-fetch('https://api.countapi.xyz/hit/portfolio-mubina-naziraliyeva/visits')
-  .then(r => r.json())
-  .then(data => {
-    const el = document.getElementById('visitCount');
-    if (el) el.textContent = data.value.toLocaleString();
-  })
-  .catch(() => {
-    const el = document.getElementById('visitCount');
-    if (el) el.closest('.visit-counter')?.remove();
-  });
+// Bir sessiyada faqat 1 marta hisoblash
+if (!sessionStorage.getItem('counted')) {
+  sessionStorage.setItem('counted', 'true');
+  fetch('https://api.counterapi.dev/v1/mubina-portfolio/visits/up')
+    .then(r => r.json())
+    .then(data => {
+      const el = document.getElementById('visitCount');
+      if (el) el.textContent = data.count.toLocaleString();
+    })
+    .catch(() => {
+      const el = document.getElementById('visitCount');
+      if (el) el.closest('.visit-counter')?.remove();
+    });
+} else {
+  // Hisoblamas, lekin sonni ko'rsatadi
+  fetch('https://api.counterapi.dev/v1/mubina-portfolio/visits')
+    .then(r => r.json())
+    .then(data => {
+      const el = document.getElementById('visitCount');
+      if (el) el.textContent = data.count.toLocaleString();
+    });
+}
 
   // PWA Service Worker
 if ('serviceWorker' in navigator) {
