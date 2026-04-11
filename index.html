@@ -1,8 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- <head> ichiga qo'shing: -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mubina Naziraliyeva — Frontend Developer" />
+<meta name="twitter:description" content="Frontend developer turning ideas into working interfaces." />
+<meta name="twitter:image" content="https://portfolio-with-ai-gamma.vercel.app/assets/og-image.svg" />
+<meta name="author" content="Mubina Naziraliyeva" />
+<link rel="canonical" href="https://portfolio-with-ai-gamma.vercel.app/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#0f172a" />
     <title>Mubina Naziraliyeva — Frontend Developer</title>
     <meta
       name="description"
@@ -24,6 +33,8 @@
       content="https://portfolio-with-ai-gamma.vercel.app/"
     />
     <meta property="og:image" content="/assets/og-image.svg" />
+
+    
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,11 +48,32 @@
     />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
+  <!-- CV Preview Modal -->
+<div id="cvModal" class="cv-modal" aria-hidden="true">
+  <div class="cv-modal-backdrop" id="cvModalBackdrop"></div>
+  <div class="cv-modal-body">
+    <div class="cv-modal-header">
+      <span>Curriculum Vitae</span>
+      <div style="display:flex;gap:0.5rem">
+        <a class="btn small" href="assets/cv.pdf" download>
+          <i class="fa-solid fa-download"></i> Download
+        </a>
+        <button class="live-modal-close" id="cvModalClose" type="button">&times;</button>
+      </div>
+    </div>
+    <iframe src="assets/cv.pdf" frameborder="0" title="CV Preview"></iframe>
+  </div>
+</div>
   <body>
-    <!-- Preloader -->
     <div id="preloader" class="preloader" aria-hidden="true">
       <div class="preloader-inner">
-        <div class="logo" data-i18n="site_brand">Mubina</div>
+        <div class="logo">Mubina</div>
+        <div class="skeleton-lines">
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+        </div>
         <div class="loader-dot"></div>
       </div>
     </div>
@@ -110,10 +142,10 @@
                 ><span data-i18n="hero_btn_contact">Contact</span>
                 <i class="fa-solid fa-envelope"></i
               ></a>
-              <a class="btn ghost" href="assets/cv.pdf" download id="downloadCv"
-                ><span data-i18n="hero_btn_cv">Download CV</span>
-                <i class="fa-solid fa-download"></i
-              ></a>
+              <button class="btn ghost" id="cvPreviewBtn" type="button">
+                <span data-i18n="hero_btn_cv">Download CV</span>
+                <i class="fa-solid fa-file-pdf"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -382,7 +414,12 @@
                 style="--placeholder-hue: 292"
                 aria-hidden="true"
               >
-                <i class="fa-solid fa-music"></i>
+              <img
+              class="project-thumb"
+              src="Image/Screenshot 2026-04-11 205621.png"
+              alt="Just Do It screenshot"
+              loading="lazy"
+            />
               </div>
               <div class="project-body">
                 <h3 data-i18n="proj_music_title">Music Player with AI</h3>
@@ -519,7 +556,12 @@
                 style="--placeholder-hue: 200"
                 aria-hidden="true"
               >
-                <i class="fa-solid fa-image"></i>
+              <img
+              class="project-thumb"
+              src="Image/Screenshot 2026-04-11 205717.png"
+              alt="Just Do It screenshot"
+              loading="lazy"
+            />
               </div>
               <div class="project-body">
                 <h3 data-i18n="proj_img_title">Random Image</h3>
@@ -564,7 +606,12 @@
                 style="--placeholder-hue: 32"
                 aria-hidden="true"
               >
-                <i class="fa-solid fa-palette"></i>
+              <img
+              class="project-thumb"
+              src="Image/Screenshot 2026-04-11 205753.png"
+              alt="Just Do It screenshot"
+              loading="lazy"
+            />
               </div>
               <div class="project-body">
                 <h3 data-i18n="proj_color_title">Random Color</h3>
@@ -609,7 +656,12 @@
                 style="--placeholder-hue: 350"
                 aria-hidden="true"
               >
-                <i class="fa-solid fa-gift"></i>
+              <img
+              class="project-thumb"
+              src="Image/Screenshot 2026-04-11 205812.png"
+              alt="Just Do It screenshot"
+              loading="lazy"
+            />
               </div>
               <div class="project-body">
                 <h3 data-i18n="proj_ny_title">New Year Page</h3>
@@ -737,6 +789,11 @@
             </svg>
           </a>
         </div>
+        <!-- Footer div ichiga: -->
+<div class="visit-counter">
+  <i class="fa-solid fa-eye"></i>
+  <span id="visitCount">...</span> views
+</div>
       </div>
     </footer>
 

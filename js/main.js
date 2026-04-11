@@ -1,4 +1,9 @@
 // Small UI helpers: nav toggle, scroll reveals, year, smooth scroll, simple typing
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  setTimeout(() => preloader.classList.add('hidden'), 600);
+});
+
 (function () {
   // set year
   const y = document.getElementById("year");
@@ -971,3 +976,46 @@ applyLang(savedLang);
 document.querySelectorAll(".lang-btn").forEach((btn) => {
   btn.addEventListener("click", () => applyLang(btn.dataset.lang));
 });
+
+// CV Preview Modal
+const cvModal = document.getElementById('cvModal');
+document.getElementById('cvPreviewBtn')?.addEventListener('click', () => {
+  cvModal.classList.add('open');
+  cvModal.setAttribute('aria-hidden', 'false');
+});
+document.getElementById('cvModalClose')?.addEventListener('click', () => {
+  cvModal.classList.remove('open');
+  cvModal.setAttribute('aria-hidden', 'true');
+});
+document.getElementById('cvModalBackdrop')?.addEventListener('click', () => {
+  cvModal.classList.remove('open');
+  cvModal.setAttribute('aria-hidden', 'true');
+});
+
+// Custom cursor
+const cursor = document.getElementById('custom-cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a, button, .project-card').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+});
+
+// Visit counter (countapi.xyz bepul)
+fetch('https://api.countapi.xyz/hit/portfolio-mubina-naziraliyeva/visits')
+  .then(r => r.json())
+  .then(data => {
+    const el = document.getElementById('visitCount');
+    if (el) el.textContent = data.value.toLocaleString();
+  })
+  .catch(() => {
+    const el = document.getElementById('visitCount');
+    if (el) el.closest('.visit-counter')?.remove();
+  });
+
+  // PWA Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}

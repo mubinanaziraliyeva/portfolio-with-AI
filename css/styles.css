@@ -664,20 +664,27 @@ section {
   opacity: 1;
 }
 
-/* Custom cursor */
+
+/* ===== CUSTOM CURSOR ===== */
 .custom-cursor {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent);
   border-radius: 50%;
   pointer-events: none;
-  background: rgba(124, 58, 237, 0.9);
+  z-index: 99999;
   transform: translate(-50%, -50%);
-  z-index: 3000;
-  mix-blend-mode: screen;
-  transition: transform 0.08s linear;
+  transition: width 0.2s, height 0.2s, background 0.2s, border-color 0.2s;
+  mix-blend-mode: difference;
+}
+.custom-cursor.cursor-hover {
+  width: 40px;
+  height: 40px;
+  background: rgba(139, 92, 246, 0.15);
+}
+@media (hover: none) {
+  .custom-cursor { display: none; }
 }
 
 /* Skill stack icons (local SVG) */
@@ -1037,4 +1044,116 @@ body.light .nav a {
 
 .lang-btn:hover:not(.active) {
   color: #fff;
+}
+
+/* ===== SKELETON SCREEN ===== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.skeleton-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 200px;
+}
+.skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--surface) 25%, #ffffff12 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+.skeleton-line:nth-child(1) { width: 100%; }
+.skeleton-line:nth-child(2) { width: 75%; }
+.skeleton-line:nth-child(3) { width: 88%; }
+.skeleton-line:nth-child(4) { width: 60%; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.loader-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.5; }
+}
+
+/* ===== CV MODAL ===== */
+.cv-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.cv-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+.cv-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+.cv-modal-body {
+  position: relative;
+  width: min(90vw, 800px);
+  height: 85vh;
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border, #ffffff18);
+}
+.cv-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border, #ffffff18);
+  font-weight: 600;
+}
+.cv-modal-body iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+.visit-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
 }
