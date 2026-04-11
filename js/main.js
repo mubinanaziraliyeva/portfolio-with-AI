@@ -1005,29 +1005,23 @@ document.querySelectorAll('a, button, .project-card').forEach(el => {
 
 // Visit counter (countapi.xyz bepul)
 // Bir sessiyada faqat 1 marta hisoblash
+const visitEl = document.getElementById('visitCount');
+
 if (!sessionStorage.getItem('counted')) {
   sessionStorage.setItem('counted', 'true');
   fetch('https://api.counterapi.dev/v1/mubina-portfolio/visits/up')
     .then(r => r.json())
     .then(data => {
-      const el = document.getElementById('visitCount');
-      if (el) el.textContent = data.count.toLocaleString();
+      if (visitEl) {
+        visitEl.textContent = data.count.toLocaleString();
+        sessionStorage.setItem('lastCount', data.count.toLocaleString());
+      }
     })
     .catch(() => {
-      const el = document.getElementById('visitCount');
-      if (el) el.closest('.visit-counter')?.remove();
+      if (visitEl) visitEl.textContent = '—';
     });
 } else {
-  fetch('https://api.counterapi.dev/v1/mubina-portfolio/visits/get')
-    .then(r => r.json())
-    .then(data => {
-      const el = document.getElementById('visitCount');
-      if (el) el.textContent = data.count.toLocaleString();
-    })
-    .catch(() => {
-      const el = document.getElementById('visitCount');
-      if (el) el.closest('.visit-counter')?.remove();
-    });
+  if (visitEl) visitEl.textContent = sessionStorage.getItem('lastCount') || '—';
 }
 
   // PWA Service Worker
