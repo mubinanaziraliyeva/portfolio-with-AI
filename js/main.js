@@ -44,37 +44,6 @@
 
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-  // tiny headline typing loop
-  const heroTitle = document.querySelector(".hero-title");
-  if (heroTitle) {
-    const phrases = ["Frontend developer.", "UI engineer.", "Animation lover."];
-    let i = 0,
-      j = 0,
-      dir = 1; // simple cycle
-    const span = document.createElement("span");
-    span.style.color = "var(--muted)";
-    span.style.marginLeft = "0.6rem";
-    heroTitle.appendChild(span);
-    function tick() {
-      const phrase = phrases[i];
-      span.textContent = phrase.slice(0, j);
-      j += dir;
-      if (j > phrase.length) {
-        dir = -1;
-        j = phrase.length;
-        setTimeout(tick, 900);
-        return;
-      }
-      if (j < 0) {
-        dir = 1;
-        j = 0;
-        i = (i + 1) % phrases.length;
-      }
-      setTimeout(tick, 80);
-    }
-    tick();
-  }
-
   // small hover tilt effect for project cards
   document.querySelectorAll(".project-card").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
@@ -493,7 +462,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initGSAP();
   initThreeScene();
   initPageTransitions();
-  initReadModal();
 });
 
 if (document.readyState === "loading") {
@@ -605,3 +573,401 @@ async function userData() {
     submitBtn.style.opacity = "1";
   }
 }
+
+// ==================== THEME TOGGLE ====================
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+const savedTheme = localStorage.getItem("theme") || "dark";
+if (savedTheme === "light") {
+  document.body.classList.add("light");
+  if (themeIcon) themeIcon.className = "fa-solid fa-moon";
+}
+
+if (themeToggle && themeIcon) {
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    const isLight = document.body.classList.contains("light");
+    themeIcon.className = isLight ? "fa-solid fa-moon" : "fa-solid fa-sun";
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+  });
+}
+
+// ==================== TRANSLATIONS ====================
+const translations = {
+  en: {
+    site_brand: "Mubina",
+    nav_about: "About",
+    nav_skills: "Skills",
+    nav_projects: "Projects",
+    nav_contact: "Contact",
+    nav_aria_menu: "Toggle navigation",
+    theme_toggle_title: "Toggle theme",
+    hero_hi: "Hi, I'm",
+    hero_name: "Mubina",
+    hero_sub:
+      "Frontend developer at an IT center — learning by shipping real projects, from healthcare concepts to music players and productivity tools.",
+    hero_btn_work: "See my work",
+    hero_btn_contact: "Contact",
+    hero_btn_cv: "Download CV",
+    hero_tagline_1: "Frontend developer.",
+    hero_tagline_2: "Building real projects.",
+    hero_tagline_3: "Learning fast.",
+    about_title: "About me",
+    about_lead:
+      "I'm <strong>Mubina Naziraliyeva</strong>, a frontend developer currently completing my studies at an IT center. Over the past 7–8 months, I've been actively learning and building real projects — from healthcare concept sites to music players and productivity tools.",
+    about_p:
+      "I'm still growing, but I learn fast and I enjoy turning ideas into working interfaces. Every project I build teaches me something new.",
+    about_btn_touch: "Get in touch",
+    about_btn_work: "See work",
+    skills_title: "Skills",
+    skill_html_title: "HTML",
+    skill_html_desc: "Semantic markup and page structure.",
+    skill_css_title: "CSS",
+    skill_css_desc: "Layouts, styling, and basic animations.",
+    skill_js_title: "JavaScript",
+    skill_js_desc: "DOM manipulation, events, and API calls.",
+    skill_tailwind_title: "Tailwind CSS",
+    skill_tailwind_desc: "Utility-first styling for fast layout and design.",
+    skill_daisy_title: "DaisyUI",
+    skill_daisy_desc: "Component-based UI on top of Tailwind.",
+    skill_github_title: "GitHub",
+    skill_github_desc: "Version control and keeping code organized.",
+    skill_vercel_title: "Vercel",
+    skill_vercel_desc: "Deploying projects and sharing live demos.",
+    projects_title: "Projects",
+    proj_live: "Live",
+    meta_vercel: "Vercel",
+    proj_ai_title: "AI Doktor",
+    proj_ai_desc:
+      "A concept platform for how AI could support healthcare — diagnostics, patient monitoring, and virtual consultations. Built with HTML, CSS, JavaScript, Tailwind, and DaisyUI.",
+    proj_ai_stack: "HTML / CSS / JS",
+    proj_music_title: "Music Player with AI",
+    proj_music_desc:
+      "A music player web app with a modern dark interface. Deployed on Vercel.",
+    proj_music_meta: "Frontend",
+    proj_todo_title: "Just Do It",
+    proj_todo_desc:
+      "A simple task management and productivity app — organize work in the browser.",
+    proj_todo_meta: "Productivity",
+    proj_book_title: "Tech Book",
+    proj_book_desc:
+      "A dark-themed technical blog interface — reading-focused UI on the web.",
+    proj_book_meta: "Blog UI",
+    proj_img_title: "Random Image",
+    proj_img_desc:
+      "A fun mini-app that generates random images — quick fetch and display practice.",
+    proj_img_meta: "Mini app",
+    proj_color_title: "Random Color",
+    proj_color_desc:
+      "A simple color generator — click, copy, and explore palettes in the browser.",
+    proj_color_meta: "Tools",
+    proj_ny_title: "New Year Page",
+    proj_ny_desc:
+      "A festive New Year themed landing page — layout, mood, and seasonal styling.",
+    proj_ny_meta: "Landing",
+    contact_title: "Contact",
+    contact_p:
+      "I'm open to junior frontend roles and internship opportunities. Feel free to reach out — or message me on Telegram <a href='https://t.me/Mubina0610' rel='noopener noreferrer'>@Mubina0610</a>.",
+    contact_note:
+      "You can also use the form below; I'll get back to you as soon as I can.",
+    form_name: "Name",
+    form_email: "Email",
+    form_message: "Message",
+    form_send: "Send message",
+    footer_tagline: "Mubina Naziraliyeva — Frontend Developer",
+    modal_close_aria: "Close preview",
+    modal_iframe_title: "Live preview",
+    back_top_aria: "Back to top",
+    back_top_title: "Back to top",
+    exp_title: "Experience",
+    exp_p:
+      "7–8 months of focused practice — shipping real interfaces and learning from each build.",
+    edu_title: "Education",
+    edu_p: "Completing frontend studies at an IT center.",
+    int_title: "Interests",
+    int_p:
+      "Clean UI, practical JavaScript, and projects that solve small real problems.",
+  },
+  uz: {
+    site_brand: "Mubina",
+    nav_about: "Haqimda",
+    nav_skills: "Ko'nikmalar",
+    nav_projects: "Loyihalar",
+    nav_contact: "Bog'lanish",
+    nav_aria_menu: "Navigatsiyani ochish/yopish",
+    theme_toggle_title: "Mavzuni almashtirish",
+    hero_hi: "Salom, men",
+    hero_name: "Mubina",
+    hero_sub:
+      "IT markazida frontend dasturlashni o'rganmoqdaman — tibbiyot konseptlaridan tortib musiqa playerlari va produktivlik ilovalarigacha real loyihalar yarataman.",
+    hero_btn_work: "Ishlarimni ko'rish",
+    hero_btn_contact: "Bog'lanish",
+    hero_btn_cv: "CV yuklab olish",
+    hero_tagline_1: "Frontend dasturchi.",
+    hero_tagline_2: "Real loyihalar yarataman.",
+    hero_tagline_3: "Tez o'rganaman.",
+    about_title: "Men haqimda",
+    about_lead:
+      "Men <strong>Mubina Naziraliyeva</strong>, IT markazida frontend dasturlashni o'rganayotgan dasturchiman. So'nggi 7–8 oy ichida tibbiyot saytlari, musiqa playerlari va produktivlik vositalarigacha real loyihalar ustida ishladim.",
+    about_p:
+      "Hali o'sib bormoqdaman, lekin tez o'rganaman va g'oyalarni ishlaydigan interfeyslarga aylantirish menga zavq beradi. Har bir loyihadan yangi narsa o'rganaman.",
+    about_btn_touch: "Aloqaga chiqish",
+    about_btn_work: "Loyihalarni ko'rish",
+    skills_title: "Ko'nikmalar",
+    skill_html_title: "HTML",
+    skill_html_desc: "Semantik markup va sahifa tuzilmasi.",
+    skill_css_title: "CSS",
+    skill_css_desc: "Layout, uslub va oddiy animatsiyalar.",
+    skill_js_title: "JavaScript",
+    skill_js_desc: "DOM, hodisalar va API bilan ishlash.",
+    skill_tailwind_title: "Tailwind CSS",
+    skill_tailwind_desc: "Tez layout va dizayn uchun utility-first uslub.",
+    skill_daisy_title: "DaisyUI",
+    skill_daisy_desc: "Tailwind ustidagi komponentli UI.",
+    skill_github_title: "GitHub",
+    skill_github_desc: "Versiya nazorati va kodni tartibda saqlash.",
+    skill_vercel_title: "Vercel",
+    skill_vercel_desc: "Loyihalarni joylashtirish va jonli demo ulashish.",
+    projects_title: "Loyihalar",
+    proj_live: "Jonli",
+    meta_vercel: "Vercel",
+    proj_ai_title: "AI Doktor",
+    proj_ai_desc:
+      "AI tibbiyotda qanday yordam berishi mumkinligi bo'yicha konsept — diagnostika, monitoring va virtual maslahat. HTML, CSS, JavaScript, Tailwind va DaisyUI.",
+    proj_ai_stack: "HTML / CSS / JS",
+    proj_music_title: "Music Player with AI",
+    proj_music_desc:
+      "Zamonaviy qorong'u interfeysli musiqa player veb-ilovasi. Vercelda joylashtirilgan.",
+    proj_music_meta: "Frontend",
+    proj_todo_title: "Just Do It",
+    proj_todo_desc:
+      "Vazifalar va produktivlik uchun oddiy ilova — brauzerda ishni tartibga solish.",
+    proj_todo_meta: "Produktivlik",
+    proj_book_title: "Tech Book",
+    proj_book_desc:
+      "Texnik blog uchun qorong'u interfeys — o'qishga qulay UI.",
+    proj_book_meta: "Blog UI",
+    proj_img_title: "Random Image",
+    proj_img_desc:
+      "Tasodifiy rasmlar yaratadigan mini-ilova — fetch va ko'rsatish mashqi.",
+    proj_img_meta: "Mini ilova",
+    proj_color_title: "Random Color",
+    proj_color_desc:
+      "Oddiy rang generatori — brauzerda bosish, nusxalash va palitralar.",
+    proj_color_meta: "Vositalar",
+    proj_ny_title: "New Year Page",
+    proj_ny_desc:
+      "Yangi yil mavzusidagi landing — layout, kayfiyat va mavsumiy uslub.",
+    proj_ny_meta: "Landing",
+    contact_title: "Bog'lanish",
+    contact_p:
+      "Junior frontend yoki amaliyot imkoniyatlariga ochiqman. Telegram orqali yozishingiz mumkin: <a href='https://t.me/Mubina0610' rel='noopener noreferrer'>@Mubina0610</a>.",
+    contact_note:
+      "Quyidagi formadan ham foydalanishingiz mumkin; imkon qadar tez javob beraman.",
+    form_name: "Ism",
+    form_email: "Email",
+    form_message: "Xabar",
+    form_send: "Xabar yuborish",
+    footer_tagline: "Mubina Naziraliyeva — Frontend dasturchi",
+    modal_close_aria: "Oldindan ko'rishni yopish",
+    modal_iframe_title: "Jonli ko'rish",
+    back_top_aria: "Yuqoriga",
+    back_top_title: "Yuqoriga",
+    exp_title: "Tajriba",
+    exp_p:
+      "7–8 oy amaliy mashq — real interfeyslar yaratish va har bir loyihadan o'rganish.",
+    edu_title: "Ta'lim",
+    edu_p: "IT markazida frontend dasturlash bo'yicha o'qishni yakunlamoqdaman.",
+    int_title: "Qiziqishlar",
+    int_p:
+      "Toza UI, amaliy JavaScript va kichik muammolarni hal qiladigan loyihalar.",
+  },
+  ru: {
+    site_brand: "Mubina",
+    nav_about: "Обо мне",
+    nav_skills: "Навыки",
+    nav_projects: "Проекты",
+    nav_contact: "Контакт",
+    nav_aria_menu: "Открыть или закрыть меню",
+    theme_toggle_title: "Переключить тему",
+    hero_hi: "Привет, я",
+    hero_name: "Мубина",
+    hero_sub:
+      "Frontend-разработчик в IT-центре — учусь на реальных проектах: от медицинских концептов до музыкальных плееров и инструментов продуктивности.",
+    hero_btn_work: "Смотреть работы",
+    hero_btn_contact: "Связаться",
+    hero_btn_cv: "Скачать CV",
+    hero_tagline_1: "Frontend-разработчик.",
+    hero_tagline_2: "Создаю реальные проекты.",
+    hero_tagline_3: "Быстро учусь.",
+    about_title: "Обо мне",
+    about_lead:
+      "Я <strong>Мубина Назиралиева</strong>, frontend-разработчик, завершающая обучение в IT-центре. За последние 7–8 месяцев я активно училась и создавала реальные проекты — от медицинских концептов до музыкальных плееров и продуктивности.",
+    about_p:
+      "Я продолжаю расти, но учусь быстро и получаю удовольствие от превращения идей в работающие интерфейсы. Каждый проект чему-то меня учит.",
+    about_btn_touch: "Написать",
+    about_btn_work: "К проектам",
+    skills_title: "Навыки",
+    skill_html_title: "HTML",
+    skill_html_desc: "Семантическая разметка и структура страницы.",
+    skill_css_title: "CSS",
+    skill_css_desc: "Вёрстка, стили и простые анимации.",
+    skill_js_title: "JavaScript",
+    skill_js_desc: "DOM, события и работа с API.",
+    skill_tailwind_title: "Tailwind CSS",
+    skill_tailwind_desc: "Utility-first стили для быстрой вёрстки.",
+    skill_daisy_title: "DaisyUI",
+    skill_daisy_desc: "Компонентный UI поверх Tailwind.",
+    skill_github_title: "GitHub",
+    skill_github_desc: "Контроль версий и порядок в коде.",
+    skill_vercel_title: "Vercel",
+    skill_vercel_desc: "Деплой проектов и демо-ссылки.",
+    projects_title: "Проекты",
+    proj_live: "Демо",
+    meta_vercel: "Vercel",
+    proj_ai_title: "AI Doktor",
+    proj_ai_desc:
+      "Концепт платформы, как ИИ может помогать в здравоохранении — диагностика, мониторинг и виртуальные консультации. HTML, CSS, JavaScript, Tailwind и DaisyUI.",
+    proj_ai_stack: "HTML / CSS / JS",
+    proj_music_title: "Music Player with AI",
+    proj_music_desc:
+      "Веб-плеер с тёмным современным интерфейсом. Развёрнуто на Vercel.",
+    proj_music_meta: "Frontend",
+    proj_todo_title: "Just Do It",
+    proj_todo_desc:
+      "Простое приложение для задач и продуктивности — в браузере.",
+    proj_todo_meta: "Продуктивность",
+    proj_book_title: "Tech Book",
+    proj_book_desc:
+      "Тёмный интерфейс технического блога — UI для чтения в вебе.",
+    proj_book_meta: "Блог UI",
+    proj_img_title: "Random Image",
+    proj_img_desc:
+      "Мини-приложение со случайными изображениями — практика fetch и отображения.",
+    proj_img_meta: "Мини-приложение",
+    proj_color_title: "Random Color",
+    proj_color_desc:
+      "Простой генератор цветов — клик, копирование и палитры в браузере.",
+    proj_color_meta: "Инструменты",
+    proj_ny_title: "New Year Page",
+    proj_ny_desc:
+      "Праздничный лендинг к Новому году — композиция, настроение и стилизация.",
+    proj_ny_meta: "Лендинг",
+    contact_title: "Контакт",
+    contact_p:
+      "Открыта к junior frontend позициям и стажировкам. Напишите в Telegram: <a href='https://t.me/Mubina0610' rel='noopener noreferrer'>@Mubina0610</a>.",
+    contact_note:
+      "Можно также использовать форму ниже — отвечу как можно скорее.",
+    form_name: "Имя",
+    form_email: "Email",
+    form_message: "Сообщение",
+    form_send: "Отправить",
+    footer_tagline: "Мубина Назиралиева — Frontend-разработчик",
+    modal_close_aria: "Закрыть предпросмотр",
+    modal_iframe_title: "Живой предпросмотр",
+    back_top_aria: "Наверх",
+    back_top_title: "Наверх",
+    exp_title: "Опыт",
+    exp_p:
+      "7–8 месяцев практики — реальные интерфейсы и обучение на каждом проекте.",
+    edu_title: "Образование",
+    edu_p: "Завершаю обучение frontend-разработке в IT-центре.",
+    int_title: "Интересы",
+    int_p:
+      "Чистый UI, практический JavaScript и проекты, решающие реальные задачи.",
+  },
+};
+
+let heroTypingTimeouts = [];
+function clearHeroTyping() {
+  heroTypingTimeouts.forEach(clearTimeout);
+  heroTypingTimeouts = [];
+}
+
+function startHeroTyping(lang) {
+  clearHeroTyping();
+  const heroTitle = document.querySelector(".hero-title");
+  const dict = translations[lang];
+  if (!heroTitle || !dict) return;
+
+  const phrases = [
+    dict.hero_tagline_1,
+    dict.hero_tagline_2,
+    dict.hero_tagline_3,
+  ];
+  let span = heroTitle.querySelector(".hero-title-typed");
+  if (!span) {
+    span = document.createElement("span");
+    span.className = "hero-title-typed";
+    span.setAttribute("aria-live", "polite");
+    span.style.color = "var(--muted)";
+    span.style.marginLeft = "0.6rem";
+    heroTitle.appendChild(span);
+  }
+
+  let i = 0;
+  let j = 0;
+  let dir = 1;
+
+  function tick() {
+    const phrase = phrases[i];
+    span.textContent = phrase.slice(0, j);
+    j += dir;
+    if (j > phrase.length) {
+      dir = -1;
+      j = phrase.length;
+      heroTypingTimeouts.push(setTimeout(tick, 900));
+      return;
+    }
+    if (j < 0) {
+      dir = 1;
+      j = 0;
+      i = (i + 1) % phrases.length;
+    }
+    heroTypingTimeouts.push(setTimeout(tick, 80));
+  }
+
+  tick();
+}
+
+function applyLang(lang) {
+  const dict = translations[lang];
+  if (!dict) return;
+
+  document.documentElement.lang = lang === "uz" ? "uz" : lang === "ru" ? "ru" : "en";
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-html");
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-title");
+    if (dict[key] !== undefined) el.title = dict[key];
+  });
+
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-aria-label");
+    if (dict[key] !== undefined) el.setAttribute("aria-label", dict[key]);
+  });
+
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+  localStorage.setItem("lang", lang);
+
+  startHeroTyping(lang);
+}
+
+const savedLang = localStorage.getItem("lang") || "en";
+applyLang(savedLang);
+
+document.querySelectorAll(".lang-btn").forEach((btn) => {
+  btn.addEventListener("click", () => applyLang(btn.dataset.lang));
+});

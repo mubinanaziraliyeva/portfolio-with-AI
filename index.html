@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Frontend Developer — Portfolio</title>
+    <title>Mubina Naziraliyeva — Frontend Developer</title>
     <meta
       name="description"
-      content="Mubina — Frontend developer. I build accessible, performant, and delightful user interfaces. Available for freelance and full-time roles."
+      content="Mubina Naziraliyeva — frontend developer completing studies at an IT center. Projects in healthcare UI, music apps, productivity tools, and more."
     />
     <meta
       name="keywords"
-      content="frontend, developer, portfolio, ui, javascript, css, html, react, animations"
+      content="frontend, developer, portfolio, html, css, javascript, tailwind, daisyui, vercel"
     />
     <!-- Open Graph -->
-    <meta property="og:title" content="Mubina — Frontend Developer" />
+    <meta property="og:title" content="Mubina Naziraliyeva — Frontend Developer" />
     <meta
       property="og:description"
-      content="I build accessible, performant, and delightful user interfaces. Check out projects, blog posts, and contact me."
+      content="Frontend developer turning ideas into working interfaces. Explore live projects and get in touch."
     />
     <meta property="og:type" content="website" />
     <meta
@@ -41,7 +41,7 @@
     <!-- Preloader -->
     <div id="preloader" class="preloader" aria-hidden="true">
       <div class="preloader-inner">
-        <div class="logo">Mubina</div>
+        <div class="logo" data-i18n="site_brand">Mubina</div>
         <div class="loader-dot"></div>
       </div>
     </div>
@@ -51,17 +51,35 @@
     <!-- Trailing halo cursor removed per request -->
     <header class="site-header">
       <div class="container">
-        <a class="logo" href="#">Mubina</a>
+        <a class="logo" href="#" data-i18n="site_brand">Mubina</a>
         <nav class="nav" id="nav">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#about" data-i18n="nav_about">About</a>
+          <a href="#skills" data-i18n="nav_skills">Skills</a>
+          <a href="#projects" data-i18n="nav_projects">Projects</a>
+          <a href="#contact" data-i18n="nav_contact">Contact</a>
         </nav>
         <div class="header-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en" type="button">
+              EN
+            </button>
+            <button class="lang-btn" data-lang="uz" type="button">UZ</button>
+            <button class="lang-btn" data-lang="ru" type="button">RU</button>
+          </div>
+          <button
+            class="icon-btn"
+            id="themeToggle"
+            type="button"
+            data-i18n-title="theme_toggle_title"
+            title="Toggle theme"
+          >
+            <i class="fa-solid fa-sun" id="themeIcon"></i>
+          </button>
           <button
             class="nav-toggle"
+            type="button"
             aria-label="Toggle navigation"
+            data-i18n-aria-label="nav_aria_menu"
             id="navToggle"
           >
             <i class="fa-solid fa-bars"></i>
@@ -71,81 +89,91 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="section hero">
         <div class="container hero-grid">
           <div class="hero-content">
             <h1 class="hero-title">
-              Hi, I'm <span class="accent">Mubina</span>
+              <span data-i18n="hero_hi">Hi, I'm</span>
+              <span class="accent" data-i18n="hero_name">Mubina</span>
             </h1>
-            <p class="hero-sub">
-              Frontend developer building accessible, performant, and delightful
-              interfaces.
+            <p class="hero-sub" data-i18n="hero_sub">
+              Frontend developer at an IT center — learning by shipping real
+              projects, from healthcare concepts to music players and productivity
+              tools.
             </p>
             <div class="hero-cta">
               <a class="btn" href="#projects"
-                >See my work <i class="fa-solid fa-arrow-right"></i
+                ><span data-i18n="hero_btn_work">See my work</span>
+                <i class="fa-solid fa-arrow-right"></i
               ></a>
               <a class="btn ghost" href="#contact"
-                >Hire me <i class="fa-solid fa-envelope"></i
+                ><span data-i18n="hero_btn_contact">Contact</span>
+                <i class="fa-solid fa-envelope"></i
               ></a>
               <a class="btn ghost" href="assets/cv.pdf" download id="downloadCv"
-                >Download CV <i class="fa-solid fa-download"></i
+                ><span data-i18n="hero_btn_cv">Download CV</span>
+                <i class="fa-solid fa-download"></i
               ></a>
-            </div>
-          </div>
-          <div class="hero-card" aria-hidden="true">
-            <div class="card-surface">
-              <div class="profile"><i class="fa-solid fa-user"></i></div>
-              <ul class="floating-icons">
-                <!-- Parallax attribute for GSAP -->
-                <li><i class="fa-brands fa-html5"></i></li>
-                <li><i class="fa-brands fa-css3-alt"></i></li>
-                <li><i class="fa-brands fa-js-square"></i></li>
-                <li><i class="fa-brands fa-react"></i></li>
-              </ul>
-              <div
-                id="hero-lottie"
-                class="hero-lottie"
-                aria-hidden="true"
-              ></div>
-              <div id="threeContainer" aria-hidden="true"></div>
             </div>
           </div>
         </div>
       </section>
 
       <section id="about" class="section about">
-        <div class="container reveal about-inner">
-          <div class="about-hero">
+        <div class="container about-inner">
+          <div class="about-hero reveal">
             <div class="about-text">
-              <h2>About me</h2>
-              <p class="lead">
-                I craft frontends with attention to performance, accessibility,
-                and delightful animations. I turn designs into pixel-perfect,
-                responsive, and maintainable experiences that users love.
+              <h2 data-i18n="about_title">About me</h2>
+              <p class="lead" data-i18n-html="about_lead">
+                I'm <strong>Mubina Naziraliyeva</strong>, a frontend developer
+                currently completing my studies at an IT center. Over the past
+                7–8 months, I've been actively learning and building real
+                projects — from healthcare concept sites to music players and
+                productivity tools.
               </p>
-              <p>
-                My strengths: component architecture, animation systems,
-                progressive enhancement, and polishing details that make UIs
-                feel premium.
+              <p data-i18n="about_p">
+                I'm still growing, but I learn fast and I enjoy turning ideas
+                into working interfaces. Every project I build teaches me
+                something new.
               </p>
               <div class="about-ctas">
-                <a class="btn ghost" href="#contact">Hire me</a>
-                <a class="btn" href="#projects">See work</a>
+                <a class="btn ghost" href="#contact" data-i18n="about_btn_touch"
+                  >Get in touch</a
+                >
+                <a class="btn" href="#projects" data-i18n="about_btn_work"
+                  >See work</a
+                >
               </div>
             </div>
             <aside class="about-cards">
               <div class="about-card">
-                <h3><i class="fa-solid fa-briefcase"></i> Experience</h3>
-                <p>3+ years building UIs for web apps and marketing sites.</p>
+                <h3>
+                  <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                  <span data-i18n="exp_title">Experience</span>
+                </h3>
+                <p data-i18n="exp_p">
+                  7–8 months of focused practice — shipping real interfaces and
+                  learning from each build.
+                </p>
               </div>
               <div class="about-card">
-                <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
-                <p>Continuous learner — open-source, workshops, and courses.</p>
+                <h3>
+                  <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                  <span data-i18n="edu_title">Education</span>
+                </h3>
+                <p data-i18n="edu_p">
+                  Completing frontend studies at an IT center.
+                </p>
               </div>
               <div class="about-card">
-                <h3><i class="fa-solid fa-heart"></i> Interests</h3>
-                <p>Animations, design systems, a11y, and performance tuning.</p>
+                <h3>
+                  <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                  <span data-i18n="int_title">Interests</span>
+                </h3>
+                <p data-i18n="int_p">
+                  Clean UI, practical JavaScript, and projects that solve small
+                  real problems.
+                </p>
               </div>
             </aside>
           </div>
@@ -154,27 +182,120 @@
 
       <section id="skills" class="section skills">
         <div class="container reveal">
-          <h2>Skills</h2>
+          <h2 data-i18n="skills_title">Skills</h2>
           <div class="skills-grid">
             <div class="skill-card">
-              <i class="fa-brands fa-html5 fa-2x"></i>
-              <h4>HTML</h4>
-              <p>Semantic and accessible markup.</p>
+              <div class="skill-icon" aria-hidden="true">
+                <img
+                  src="assets/icons/html5.svg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h4 data-i18n="skill_html_title">HTML</h4>
+              <p data-i18n="skill_html_desc">
+                Semantic markup and page structure.
+              </p>
             </div>
             <div class="skill-card">
-              <i class="fa-brands fa-css3-alt fa-2x"></i>
-              <h4>CSS</h4>
-              <p>Responsive layouts, animations, modern patterns.</p>
+              <div class="skill-icon" aria-hidden="true">
+                <img
+                  src="assets/icons/css3.svg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h4 data-i18n="skill_css_title">CSS</h4>
+              <p data-i18n="skill_css_desc">
+                Layouts, styling, and basic animations.
+              </p>
             </div>
             <div class="skill-card">
-              <i class="fa-brands fa-js-square fa-2x"></i>
-              <h4>JavaScript</h4>
-              <p>ES6+, build tooling, and progressive enhancement.</p>
+              <div class="skill-icon" aria-hidden="true">
+                <img
+                  src="assets/icons/javascript.svg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h4 data-i18n="skill_js_title">JavaScript</h4>
+              <p data-i18n="skill_js_desc">
+                DOM manipulation, events, and API calls.
+              </p>
             </div>
             <div class="skill-card">
-              <i class="fa-brands fa-react fa-2x"></i>
-              <h4>React</h4>
-              <p>Component-driven apps and state management.</p>
+              <div class="skill-icon" aria-hidden="true">
+                <img
+                  src="assets/icons/tailwind.svg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h4 data-i18n="skill_tailwind_title">Tailwind CSS</h4>
+              <p data-i18n="skill_tailwind_desc">
+                Utility-first styling for fast layout and design.
+              </p>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon" aria-hidden="true">
+                <img
+                  src="assets/icons/daisyui.svg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h4 data-i18n="skill_daisy_title">DaisyUI</h4>
+              <p data-i18n="skill_daisy_desc">
+                Component-based UI on top of Tailwind.
+              </p>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon" aria-hidden="true">
+                <img
+                  src="assets/icons/github.svg"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h4 data-i18n="skill_github_title">GitHub</h4>
+              <p data-i18n="skill_github_desc">
+                Version control and keeping code organized.
+              </p>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon" aria-hidden="true">
+                <img
+                  class="skill-icon-img--vercel"
+                  src="assets/icons/vercel.svg"
+                  alt=""
+                  width="36"
+                  height="36"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <h4 data-i18n="skill_vercel_title">Vercel</h4>
+              <p data-i18n="skill_vercel_desc">
+                Deploying projects and sharing live demos.
+              </p>
             </div>
           </div>
         </div>
@@ -182,9 +303,8 @@
 
       <section id="projects" class="section projects">
         <div class="container reveal">
-          <h2>Selected projects</h2>
+          <h2 data-i18n="projects_title">Projects</h2>
           <div class="projects-grid">
-            <!-- User projects (live links added) -->
             <article class="project-card">
               <div class="project-media">
                 <img
@@ -195,11 +315,51 @@
                 />
               </div>
               <div class="project-body">
-                <h3>AI Doktor (Live)</h3>
-                <p>Healthcare demo built with modern frontend practices.</p>
+                <h3 data-i18n="proj_ai_title">AI Doktor</h3>
+                <p data-i18n="proj_ai_desc">
+                  A concept platform for how AI could support healthcare —
+                  diagnostics, patient monitoring, and virtual consultations.
+                  Built with HTML, CSS, JavaScript, Tailwind, and DaisyUI.
+                </p>
                 <div class="project-meta">
-                  <span><i class="fa-solid fa-globe"></i> Live</span>
-                  <span><i class="fa-brands fa-vercel"></i> Vercel</span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/html5.svg"
+                      class="meta-icon"
+                      width="16"
+                      height="16"
+                      alt=""
+                      decoding="async"
+                    />
+                    <img
+                      src="assets/icons/css3.svg"
+                      class="meta-icon"
+                      width="16"
+                      height="16"
+                      alt=""
+                      decoding="async"
+                    />
+                    <img
+                      src="assets/icons/javascript.svg"
+                      class="meta-icon"
+                      width="16"
+                      height="16"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="proj_ai_stack">HTML / CSS / JS</span>
+                  </span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/vercel.svg"
+                      class="meta-icon meta-icon--vercel"
+                      width="14"
+                      height="14"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="meta_vercel">Vercel</span>
+                  </span>
                 </div>
                 <div class="project-actions">
                   <a
@@ -208,11 +368,54 @@
                     data-live-url="https://ai-doktor-azure.vercel.app/"
                     rel="noopener noreferrer"
                   >
-                    Live <i class="fa-solid fa-external-link-alt"></i>
+                    <span data-i18n="proj_live">Live</span>
+                    <i class="fa-solid fa-external-link-alt"></i>
                   </a>
-                  <a class="btn small ghost" href="#"
-                    >Code <i class="fa-brands fa-github"></i
-                  ></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div
+                class="project-media is-placeholder"
+                style="--placeholder-hue: 292"
+                aria-hidden="true"
+              >
+                <i class="fa-solid fa-music"></i>
+              </div>
+              <div class="project-body">
+                <h3 data-i18n="proj_music_title">Music Player with AI</h3>
+                <p data-i18n="proj_music_desc">
+                  A music player web app with a modern dark interface. Deployed
+                  on Vercel.
+                </p>
+                <div class="project-meta">
+                  <span class="project-meta-row">
+                    <i class="fa-solid fa-code" aria-hidden="true"></i>
+                    <span data-i18n="proj_music_meta">Frontend</span>
+                  </span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/vercel.svg"
+                      class="meta-icon meta-icon--vercel"
+                      width="14"
+                      height="14"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="meta_vercel">Vercel</span>
+                  </span>
+                </div>
+                <div class="project-actions">
+                  <a
+                    class="btn small live-preview"
+                    href="https://music-player-with-ai.vercel.app/"
+                    data-live-url="https://music-player-with-ai.vercel.app/"
+                    rel="noopener noreferrer"
+                  >
+                    <span data-i18n="proj_live">Live</span>
+                    <i class="fa-solid fa-external-link-alt"></i>
+                  </a>
                 </div>
               </div>
             </article>
@@ -227,11 +430,27 @@
                 />
               </div>
               <div class="project-body">
-                <h3>Just Do It (Live)</h3>
-                <p>Task management / productivity demo deployed on Vercel.</p>
+                <h3 data-i18n="proj_todo_title">Just Do It</h3>
+                <p data-i18n="proj_todo_desc">
+                  A simple task management and productivity app — organize work
+                  in the browser.
+                </p>
                 <div class="project-meta">
-                  <span><i class="fa-solid fa-globe"></i> Live</span>
-                  <span><i class="fa-brands fa-vercel"></i> Vercel</span>
+                  <span class="project-meta-row">
+                    <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+                    <span data-i18n="proj_todo_meta">Productivity</span>
+                  </span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/vercel.svg"
+                      class="meta-icon meta-icon--vercel"
+                      width="14"
+                      height="14"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="meta_vercel">Vercel</span>
+                  </span>
                 </div>
                 <div class="project-actions">
                   <a
@@ -240,11 +459,9 @@
                     data-live-url="https://just-do-it-two.vercel.app/"
                     rel="noopener noreferrer"
                   >
-                    Live <i class="fa-solid fa-external-link-alt"></i>
+                    <span data-i18n="proj_live">Live</span>
+                    <i class="fa-solid fa-external-link-alt"></i>
                   </a>
-                  <a class="btn small ghost" href="#"
-                    >Code <i class="fa-brands fa-github"></i
-                  ></a>
                 </div>
               </div>
             </article>
@@ -259,11 +476,27 @@
                 />
               </div>
               <div class="project-body">
-                <h3>Tech Book (Live)</h3>
-                <p>Dark-themed technical blog/demo hosted on Vercel.</p>
+                <h3 data-i18n="proj_book_title">Tech Book</h3>
+                <p data-i18n="proj_book_desc">
+                  A dark-themed technical blog interface — reading-focused UI
+                  on the web.
+                </p>
                 <div class="project-meta">
-                  <span><i class="fa-solid fa-globe"></i> Live</span>
-                  <span><i class="fa-brands fa-vercel"></i> Vercel</span>
+                  <span class="project-meta-row">
+                    <i class="fa-solid fa-book" aria-hidden="true"></i>
+                    <span data-i18n="proj_book_meta">Blog UI</span>
+                  </span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/vercel.svg"
+                      class="meta-icon meta-icon--vercel"
+                      width="14"
+                      height="14"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="meta_vercel">Vercel</span>
+                  </span>
                 </div>
                 <div class="project-actions">
                   <a
@@ -272,166 +505,146 @@
                     data-live-url="https://tech-book-black.vercel.app/"
                     rel="noopener noreferrer"
                   >
-                    Live <i class="fa-solid fa-external-link-alt"></i>
+                    <span data-i18n="proj_live">Live</span>
+                    <i class="fa-solid fa-external-link-alt"></i>
                   </a>
-                  <a class="btn small ghost" href="#"
-                    >Code <i class="fa-brands fa-github"></i
-                  ></a>
-                </div>
-              </div>
-            </article>
-
-            <!-- existing/demo project cards left intact below for examples -->
-            <article class="project-card">
-              <div class="project-media">
-                <img
-                  class="project-thumb"
-                  src="./Image/RAPIDS-GPU_Pic1.png"
-                  alt="Interactive Dashboard screenshot"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-body">
-                <h3>Interactive Dashboard</h3>
-                <p>
-                  Data-rich dashboard with accessible charts and responsive
-                  controls.
-                </p>
-                <div class="project-meta">
-                  <span><i class="fa-solid fa-code"></i> React</span>
-                  <span><i class="fa-solid fa-palette"></i> CSS Modules</span>
-                </div>
-                <div class="project-actions">
-                  <a class="btn small" href="#"
-                    >Live <i class="fa-solid fa-external-link-alt"></i
-                  ></a>
-                  <a class="btn small ghost" href="#"
-                    >Code <i class="fa-brands fa-github"></i
-                  ></a>
                 </div>
               </div>
             </article>
 
             <article class="project-card">
-              <div class="project-media">
-                <img
-                  class="project-thumb"
-                  src="./Image/Website_Marketing_Small_Business_Blog_Header.png"
-                  alt="Marketing Site screenshot"
-                  loading="lazy"
-                />
+              <div
+                class="project-media is-placeholder"
+                style="--placeholder-hue: 200"
+                aria-hidden="true"
+              >
+                <i class="fa-solid fa-image"></i>
               </div>
               <div class="project-body">
-                <h3>Marketing Site</h3>
-                <p>
-                  High-performance landing page with animation system and
-                  A/B-ready components.
+                <h3 data-i18n="proj_img_title">Random Image</h3>
+                <p data-i18n="proj_img_desc">
+                  A fun mini-app that generates random images — quick fetch and
+                  display practice.
                 </p>
                 <div class="project-meta">
-                  <span><i class="fa-solid fa-code"></i> HTML/CSS</span>
-                  <span><i class="fa-solid fa-rocket"></i> Performance</span>
+                  <span class="project-meta-row">
+                    <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
+                    <span data-i18n="proj_img_meta">Mini app</span>
+                  </span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/vercel.svg"
+                      class="meta-icon meta-icon--vercel"
+                      width="14"
+                      height="14"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="meta_vercel">Vercel</span>
+                  </span>
                 </div>
                 <div class="project-actions">
-                  <a class="btn small" href="#"
-                    >Live <i class="fa-solid fa-external-link-alt"></i
-                  ></a>
-                  <a class="btn small ghost" href="#"
-                    >Code <i class="fa-brands fa-github"></i
-                  ></a>
+                  <a
+                    class="btn small live-preview"
+                    href="https://random-image-delta.vercel.app/"
+                    data-live-url="https://random-image-delta.vercel.app/"
+                    rel="noopener noreferrer"
+                  >
+                    <span data-i18n="proj_live">Live</span>
+                    <i class="fa-solid fa-external-link-alt"></i>
+                  </a>
                 </div>
               </div>
             </article>
 
             <article class="project-card">
-              <div class="project-media">
-                <img
-                  class="project-thumb"
-                  src="./Image/Component Library Structure -69892.jpg"
-                  alt="Component Library screenshot"
-                  loading="lazy"
-                />
+              <div
+                class="project-media is-placeholder"
+                style="--placeholder-hue: 32"
+                aria-hidden="true"
+              >
+                <i class="fa-solid fa-palette"></i>
               </div>
               <div class="project-body">
-                <h3>Component Library</h3>
-                <p>
-                  Design-system-ready components with accessibility-first API.
+                <h3 data-i18n="proj_color_title">Random Color</h3>
+                <p data-i18n="proj_color_desc">
+                  A simple color generator — click, copy, and explore palettes
+                  in the browser.
                 </p>
                 <div class="project-meta">
-                  <span><i class="fa-solid fa-box"></i> Storybook</span>
-                  <span><i class="fa-solid fa-check"></i> Tests</span>
+                  <span class="project-meta-row">
+                    <i class="fa-solid fa-droplet" aria-hidden="true"></i>
+                    <span data-i18n="proj_color_meta">Tools</span>
+                  </span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/vercel.svg"
+                      class="meta-icon meta-icon--vercel"
+                      width="14"
+                      height="14"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="meta_vercel">Vercel</span>
+                  </span>
                 </div>
                 <div class="project-actions">
-                  <a class="btn small" href="#"
-                    >Docs <i class="fa-solid fa-book"></i
-                  ></a>
-                  <a class="btn small ghost" href="#"
-                    >Code <i class="fa-brands fa-github"></i
-                  ></a>
+                  <a
+                    class="btn small live-preview"
+                    href="https://random-color-tau.vercel.app/"
+                    data-live-url="https://random-color-tau.vercel.app/"
+                    rel="noopener noreferrer"
+                  >
+                    <span data-i18n="proj_live">Live</span>
+                    <i class="fa-solid fa-external-link-alt"></i>
+                  </a>
                 </div>
               </div>
             </article>
-          </div>
-        </div>
-      </section>
 
-      <!-- Testimonials -->
-      <section class="section testimonials" aria-label="Testimonials">
-        <div class="container reveal">
-          <h2>Testimonials</h2>
-          <div class="test-slider" id="testSlider">
-            <div class="testimonial reveal">
-              <strong>John Doe</strong>
-              <p>Excellent work — delivered on time and polished UI.</p>
-            </div>
-            <div class="testimonial reveal">
-              <strong>Acme Co</strong>
-              <p>Professional and thoughtful frontend development.</p>
-            </div>
-            <div class="testimonial reveal">
-              <strong>Mentor</strong>
-              <p>Great student, strong attention to detail and a11y focus.</p>
-            </div>
-            <div class="testimonial reveal">
-              <strong>Client</strong>
-              <p>
-                Beautiful UI and excellent communication throughout the project.
-              </p>
-            </div>
-            <div class="testimonial reveal">
-              <strong>Product Team</strong>
-              <p>
-                Delivered thoughtful solutions and improved our conversion
-                rates.
-              </p>
-            </div>
-            <div class="testimonial reveal">
-              <strong>Peer</strong>
-              <p>Great collaborator — writes clean, well-documented code.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Blog (minimal) -->
-      <section id="blog" class="section blog" aria-label="Blog">
-        <div class="container reveal">
-          <h2>Articles</h2>
-          <div class="posts-grid">
-            <article class="post-card">
-              <h3>How I built a fast, accessible UI</h3>
-              <p>
-                Notes on performance, semantic HTML, and small animations that
-                matter.
-              </p>
-              <a class="btn small" href="#">Read</a>
-            </article>
-            <article class="post-card">
-              <h3>Animating with Lottie and CSS</h3>
-              <p>
-                A short walkthrough on adding lightweight animations to your
-                site.
-              </p>
-              <a class="btn small" href="#">Read</a>
+            <article class="project-card">
+              <div
+                class="project-media is-placeholder"
+                style="--placeholder-hue: 350"
+                aria-hidden="true"
+              >
+                <i class="fa-solid fa-gift"></i>
+              </div>
+              <div class="project-body">
+                <h3 data-i18n="proj_ny_title">New Year Page</h3>
+                <p data-i18n="proj_ny_desc">
+                  A festive New Year themed landing page — layout, mood, and
+                  seasonal styling.
+                </p>
+                <div class="project-meta">
+                  <span class="project-meta-row">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    <span data-i18n="proj_ny_meta">Landing</span>
+                  </span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/vercel.svg"
+                      class="meta-icon meta-icon--vercel"
+                      width="14"
+                      height="14"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="meta_vercel">Vercel</span>
+                  </span>
+                </div>
+                <div class="project-actions">
+                  <a
+                    class="btn small live-preview"
+                    href="https://newyearpage.vercel.app/"
+                    data-live-url="https://newyearpage.vercel.app/"
+                    rel="noopener noreferrer"
+                  >
+                    <span data-i18n="proj_live">Live</span>
+                    <i class="fa-solid fa-external-link-alt"></i>
+                  </a>
+                </div>
+              </div>
             </article>
           </div>
         </div>
@@ -439,22 +652,29 @@
 
       <section id="contact" class="section contact">
         <div class="container reveal">
-          <h2>Contact</h2>
-          <p>
-            I'm available for freelance and full-time roles. Tell me about your
-            project.
+          <h2 data-i18n="contact_title">Contact</h2>
+          <p data-i18n-html="contact_p">
+            I'm open to junior frontend roles and internship opportunities.
+            Feel free to reach out — or message me on Telegram
+            <a href="https://t.me/Mubina0610" rel="noopener noreferrer"
+              >@Mubina0610</a
+            >.
+          </p>
+          <p class="contact-note" data-i18n="contact_note">
+            You can also use the form below; I'll get back to you as soon as I
+            can.
           </p>
           <form id="contact-form" action="#">
             <label>
-              <span>Name</span>
+              <span data-i18n="form_name">Name</span>
               <input id="username" type="text" name="name" required />
             </label>
             <label>
-              <span>Email</span>
+              <span data-i18n="form_email">Email</span>
               <input id="useremail" type="email" name="email" required />
             </label>
             <label>
-              <span>Message</span>
+              <span data-i18n="form_message">Message</span>
               <textarea
                 id="usermessage"
                 name="message"
@@ -464,7 +684,8 @@
             </label>
             <div class="form-actions">
               <button id="subBtn" class="btn" type="submit">
-                Send message <i class="fa-solid fa-paper-plane"></i>
+                <span data-i18n="form_send">Send message</span>
+                <i class="fa-solid fa-paper-plane"></i>
               </button>
             </div>
           </form>
@@ -474,22 +695,35 @@
 
     <footer class="site-footer">
       <div class="container">
-        <div>© <span id="year"></span> YourName — Frontend Developer</div>
+        <div>
+          © <span id="year"></span>
+          <span data-i18n="footer_tagline">
+            Mubina Naziraliyeva — Frontend Developer
+          </span>
+        </div>
         <div class="social">
-          <!-- Replace href values with your profile URLs -->
           <a
-            href="#"
+            href="https://t.me/Mubina0610"
+            aria-label="Telegram"
+            title="Telegram @Mubina0610"
+            rel="noopener noreferrer"
+          >
+            <i class="fa-brands fa-telegram"></i>
+          </a>
+          <a
+            href="https://github.com/mubinanaziraliyeva"
             aria-label="GitHub"
-            title="Replace with your GitHub profile URL"
+            title="GitHub — mubinanaziraliyeva"
+            rel="noopener noreferrer"
           >
             <i class="fa-brands fa-github"></i>
           </a>
           <a
-            href="#"
+            href="https://vercel.com/mubinas-projects-8a278773"
             aria-label="Vercel"
-            title="Replace with your Vercel profile or dashboard URL"
+            title="Vercel — projects"
+            rel="noopener noreferrer"
           >
-            <!-- small inline SVG triangle as Vercel logo (keeps it icon-like) -->
             <svg
               width="18"
               height="18"
@@ -501,13 +735,6 @@
               <path d="M12 3L2 21h20L12 3z" fill="currentColor"></path>
             </svg>
           </a>
-          <a
-            href="#"
-            aria-label="Figma"
-            title="Replace with your Figma profile URL"
-          >
-            <i class="fa-brands fa-figma"></i>
-          </a>
         </div>
       </div>
     </footer>
@@ -516,13 +743,19 @@
     <div id="liveModal" class="live-modal" aria-hidden="true">
       <div class="live-modal-backdrop"></div>
       <div class="live-modal-body">
-        <button class="live-modal-close" aria-label="Close preview">
+        <button
+          class="live-modal-close"
+          type="button"
+          data-i18n-aria-label="modal_close_aria"
+          aria-label="Close preview"
+        >
           &times;
         </button>
         <iframe
           id="liveIframe"
           src="about:blank"
           frameborder="0"
+          data-i18n-title="modal_iframe_title"
           title="Live preview"
         ></iframe>
       </div>
@@ -533,6 +766,9 @@
     <button
       id="backToTop"
       class="back-to-top"
+      type="button"
+      data-i18n-aria-label="back_top_aria"
+      data-i18n-title="back_top_title"
       aria-label="Back to top"
       title="Back to top"
     >
