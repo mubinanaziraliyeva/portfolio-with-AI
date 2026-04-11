@@ -1018,12 +1018,15 @@ if (!sessionStorage.getItem('counted')) {
       if (el) el.closest('.visit-counter')?.remove();
     });
 } else {
-  // Hisoblamas, lekin sonni ko'rsatadi
-  fetch('https://api.counterapi.dev/v1/mubina-portfolio/visits')
+  fetch('https://api.counterapi.dev/v1/mubina-portfolio/visits/get')
     .then(r => r.json())
     .then(data => {
       const el = document.getElementById('visitCount');
       if (el) el.textContent = data.count.toLocaleString();
+    })
+    .catch(() => {
+      const el = document.getElementById('visitCount');
+      if (el) el.closest('.visit-counter')?.remove();
     });
 }
 
