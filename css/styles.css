@@ -697,6 +697,9 @@ section {
 body.light .skill-icon-img--vercel {
   filter: invert(1);
 }
+body.light .skill-icon-img--github {
+  filter: invert(1);
+}
 .project-meta-row {
   display: inline-flex;
   align-items: center;
