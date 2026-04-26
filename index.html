@@ -2,16 +2,25 @@
 <html lang="en">
   <head>
     <!-- <head> ichiga qo'shing: -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Mubina Naziraliyeva — Frontend Developer" />
-<meta name="twitter:description" content="Frontend developer turning ideas into working interfaces." />
-<meta name="twitter:image" content="https://portfolio-with-ai-gamma.vercel.app/assets/og-image.svg" />
-<meta name="author" content="Mubina Naziraliyeva" />
-<link rel="canonical" href="https://portfolio-with-ai-gamma.vercel.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Mubina Naziraliyeva — Frontend Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Frontend developer turning ideas into working interfaces."
+    />
+    <meta
+      name="twitter:image"
+      content="https://portfolio-with-ai-gamma.vercel.app/assets/og-image.svg"
+    />
+    <meta name="author" content="Mubina Naziraliyeva" />
+    <link rel="canonical" href="https://portfolio-with-ai-gamma.vercel.app/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="manifest" href="/manifest.json" />
-<meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content="#0f172a" />
     <title>Mubina Naziraliyeva — Frontend Developer</title>
     <meta
       name="description"
@@ -22,7 +31,10 @@
       content="frontend, developer, portfolio, html, css, javascript, tailwind, daisyui, vercel"
     />
     <!-- Open Graph -->
-    <meta property="og:title" content="Mubina Naziraliyeva — Frontend Developer" />
+    <meta
+      property="og:title"
+      content="Mubina Naziraliyeva — Frontend Developer"
+    />
     <meta
       property="og:description"
       content="Frontend developer turning ideas into working interfaces. Explore live projects and get in touch."
@@ -34,7 +46,6 @@
     />
     <meta property="og:image" content="/assets/og-image.svg" />
 
-    
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,21 +60,23 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <!-- CV Preview Modal -->
-<div id="cvModal" class="cv-modal" aria-hidden="true">
-  <div class="cv-modal-backdrop" id="cvModalBackdrop"></div>
-  <div class="cv-modal-body">
-    <div class="cv-modal-header">
-      <span>Curriculum Vitae</span>
-      <div style="display:flex;gap:0.5rem">
-        <a class="btn small" href="assets/cv.pdf" download>
-          <i class="fa-solid fa-download"></i> Download
-        </a>
-        <button class="live-modal-close" id="cvModalClose" type="button">&times;</button>
+  <div id="cvModal" class="cv-modal" aria-hidden="true">
+    <div class="cv-modal-backdrop" id="cvModalBackdrop"></div>
+    <div class="cv-modal-body">
+      <div class="cv-modal-header">
+        <span>Curriculum Vitae</span>
+        <div style="display: flex; gap: 0.5rem">
+          <a class="btn small" href="assets/cv.pdf" download>
+            <i class="fa-solid fa-download"></i> Download
+          </a>
+          <button class="live-modal-close" id="cvModalClose" type="button">
+            &times;
+          </button>
+        </div>
       </div>
+      <iframe src="assets/cv.pdf" frameborder="0" title="CV Preview"></iframe>
     </div>
-    <iframe src="assets/cv.pdf" frameborder="0" title="CV Preview"></iframe>
   </div>
-</div>
   <body>
     <div id="preloader" class="preloader" aria-hidden="true">
       <div class="preloader-inner">
@@ -130,8 +143,8 @@
             </h1>
             <p class="hero-sub" data-i18n="hero_sub">
               Frontend developer at an IT center — learning by shipping real
-              projects, from healthcare concepts to music players and productivity
-              tools.
+              projects, from healthcare concepts to music players and
+              productivity tools.
             </p>
             <div class="hero-cta">
               <a class="btn" href="#projects"
@@ -407,19 +420,97 @@
                 </div>
               </div>
             </article>
-
+            <article class="project-card">
+              <div class="project-media">
+                <img
+                  class="project-thumb"
+                  src="./Image/Screenshot 2026-04-26 170317.png"
+                  alt="AI Doktor screenshot"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h3 data-i18n="proj_ai_title">Weather App</h3>
+                <p data-i18n="proj_ai_desc">
+                  This site is Weather app. This is find a weather information
+                  of different countries. Built with HTML, CSS, JavaScript,
+                  React Tailwind, and DaisyUI.
+                </p>
+                <div class="project-meta">
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/html5.svg"
+                      class="meta-icon"
+                      width="16"
+                      height="16"
+                      alt=""
+                      decoding="async"
+                    />
+                    <img
+                      src="assets/icons/css3.svg"
+                      class="meta-icon"
+                      width="16"
+                      height="16"
+                      alt=""
+                      decoding="async"
+                    />
+                    <img
+                      src="assets/icons/javascript.svg"
+                      class="meta-icon"
+                      width="16"
+                      height="16"
+                      alt=""
+                      decoding="async"
+                    />
+                    <img
+                      src="assets/icons/react.svg"
+                      class="meta-icon"
+                      width="16"
+                      height="16"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="proj_ai_stack"
+                      >React / HTML / CSS / JS</span
+                    >
+                  </span>
+                  <span class="project-meta-row">
+                    <img
+                      src="assets/icons/vercel.svg"
+                      class="meta-icon meta-icon--vercel"
+                      width="14"
+                      height="14"
+                      alt=""
+                      decoding="async"
+                    />
+                    <span data-i18n="meta_vercel">Vercel</span>
+                  </span>
+                </div>
+                <div class="project-actions">
+                  <a
+                    class="btn small live-preview"
+                    href="https://weather-react-omega.vercel.app/"
+                    data-live-url="https://weather-react-omega.vercel.app/"
+                    rel="noopener noreferrer"
+                  >
+                    <span data-i18n="proj_live">Live</span>
+                    <i class="fa-solid fa-external-link-alt"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
             <article class="project-card">
               <div
                 class="project-media is-placeholder"
                 style="--placeholder-hue: 292"
                 aria-hidden="true"
               >
-              <img
-              class="project-thumb"
-              src="Image/Screenshot 2026-04-11 205621.png"
-              alt="Just Do It screenshot"
-              loading="lazy"
-            />
+                <img
+                  class="project-thumb"
+                  src="Image/Screenshot 2026-04-11 205621.png"
+                  alt="Just Do It screenshot"
+                  loading="lazy"
+                />
               </div>
               <div class="project-body">
                 <h3 data-i18n="proj_music_title">Music Player with AI</h3>
@@ -516,8 +607,8 @@
               <div class="project-body">
                 <h3 data-i18n="proj_book_title">Tech Book</h3>
                 <p data-i18n="proj_book_desc">
-                  A dark-themed technical blog interface — reading-focused UI
-                  on the web.
+                  A dark-themed technical blog interface — reading-focused UI on
+                  the web.
                 </p>
                 <div class="project-meta">
                   <span class="project-meta-row">
@@ -556,12 +647,12 @@
                 style="--placeholder-hue: 200"
                 aria-hidden="true"
               >
-              <img
-              class="project-thumb"
-              src="Image/Screenshot 2026-04-11 205717.png"
-              alt="Just Do It screenshot"
-              loading="lazy"
-            />
+                <img
+                  class="project-thumb"
+                  src="Image/Screenshot 2026-04-11 205717.png"
+                  alt="Just Do It screenshot"
+                  loading="lazy"
+                />
               </div>
               <div class="project-body">
                 <h3 data-i18n="proj_img_title">Random Image</h3>
@@ -606,12 +697,12 @@
                 style="--placeholder-hue: 32"
                 aria-hidden="true"
               >
-              <img
-              class="project-thumb"
-              src="Image/Screenshot 2026-04-11 205753.png"
-              alt="Just Do It screenshot"
-              loading="lazy"
-            />
+                <img
+                  class="project-thumb"
+                  src="Image/Screenshot 2026-04-11 205753.png"
+                  alt="Just Do It screenshot"
+                  loading="lazy"
+                />
               </div>
               <div class="project-body">
                 <h3 data-i18n="proj_color_title">Random Color</h3>
@@ -656,12 +747,12 @@
                 style="--placeholder-hue: 350"
                 aria-hidden="true"
               >
-              <img
-              class="project-thumb"
-              src="Image/Screenshot 2026-04-11 205812.png"
-              alt="Just Do It screenshot"
-              loading="lazy"
-            />
+                <img
+                  class="project-thumb"
+                  src="Image/Screenshot 2026-04-11 205812.png"
+                  alt="Just Do It screenshot"
+                  loading="lazy"
+                />
               </div>
               <div class="project-body">
                 <h3 data-i18n="proj_ny_title">New Year Page</h3>
@@ -707,8 +798,8 @@
         <div class="container reveal">
           <h2 data-i18n="contact_title">Contact</h2>
           <p data-i18n-html="contact_p">
-            I'm open to junior frontend roles and internship opportunities.
-            Feel free to reach out — or message me on Telegram
+            I'm open to junior frontend roles and internship opportunities. Feel
+            free to reach out — or message me on Telegram
             <a href="https://t.me/Mubina0610" rel="noopener noreferrer"
               >@Mubina0610</a
             >.
@@ -790,10 +881,10 @@
           </a>
         </div>
         <!-- Footer div ichiga: -->
-<div class="visit-counter">
-  <i class="fa-solid fa-eye"></i>
-  <span id="visitCount">...</span> views
-</div>
+        <div class="visit-counter">
+          <i class="fa-solid fa-eye"></i>
+          <span id="visitCount">...</span> views
+        </div>
       </div>
     </footer>
 
